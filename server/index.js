@@ -11,10 +11,11 @@ run the following commands:
         Create a file in the root called.env
             Create a SERVER_PORT variable
             Create a CONNECTION_STRING variable (currently using supabase)
+            ctrl.js, require in the dotenv package and call its config method (you can ignore the other code in there until later steps)
 
-At the top of controller.js, require in the dotenv package and call its config method (you can ignore the other code in there until later steps)
-
-Optional: destructure CONNECTION_STRING from process.env in controller.js
+    npm install sequelize pg pg-hstore
+        controller.js, require the sequelize package and save it to a variable called Sequelize
+        Initialize a new Sequelize instance and pass in your connection string.
 
     nodemon 
         run index js, spin up server
