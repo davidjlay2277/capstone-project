@@ -11,8 +11,9 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
   },
 });
 
+let gameStatus = false;
 let players = [];
-let game = {};
+let gameCurrent = {};
 
 //put these in game
 let playerHand = [];
@@ -20,7 +21,11 @@ let botHand = [];
 
 module.exports = {
   getGame: (req, res) => {
-  
+    if (gameStatus) {
+      res.status(200).send(gameCurrent);
+    } else {
+      res.status(500).send("game not ready. retry");
+    }
   },
   /// CREATE THE players ARRAY using the selected character and a random bot
   postPlayers: (req, res) => {
@@ -49,9 +54,8 @@ module.exports = {
   /// When player push "start Game" this will populate the game ARRAY using the character details
 
   postGame: (req, res) => {
-    console.log(typeof(players))
-    if (typeof(players[1]) === 'object') {
-      let game = {
+    if (typeof players[1] === "object") {
+      gameCurrent = {
         playerId: players[0].idcharacter,
         botId: players[1].idcharacter,
         playerName: players[0].name,
@@ -61,12 +65,13 @@ module.exports = {
         playerHand: [],
         botHand: [],
       };
-      res.status(200).send(game) 
-      .catch((err) => console.log("characters not found", err));;
+      gameStatus = true;
+      res.status(200).send(gameCurrent);
     } else {
-      console.log('charactes not ready')
-      res.status(500).send('characters not ready')}
-   
+      console.log("charactes not ready");
+      res.status(500).send("characters not ready");
+    }
+
     // .then(() => {
     //   res.status(200).send(game);
     // });
