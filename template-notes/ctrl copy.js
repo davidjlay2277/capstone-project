@@ -12,64 +12,32 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
 });
 
 let players = [];
-let game = {};
-
-//put these in game
+let playerObj = {};
+let botObj = {};
+let game = [];
 let playerHand = [];
 let botHand = [];
 
 module.exports = {
   getGame: (req, res) => {
-  
+    console.log("hit on get game");
   },
-  /// CREATE THE players ARRAY using the selected character and a random bot
-  postPlayers: (req, res) => {
+
+  getPlayers: (req, res) => {
     let { id } = req.body;
     let idBot = Math.floor(Math.random() * 2) + 1;
-    sequelize
-      .query(
-        `SELECT * FROM characters WHERE idCharacter = ${id};
-              SELECT * FROM characters WHERE idCharacter = ${idBot}`
-      )
+  sequelize
+      .query(`SELECT * FROM characters WHERE idCharacter = ${id};
+              SELECT * FROM characters WHERE idCharacter = ${idBot}`)
       .then((sqlResult) => {
-        if (
-          sqlResult[0][0].idcharacter > 0 &&
-          sqlResult[0][1].idcharacter > 0
-        ) {
-          players.push(sqlResult[0][0]);
-          players.push(sqlResult[0][1]);
-          res.status(200).send(players);
-        } else {
-          console.log("please select a character first");
+      if (sqlResult[0][0].idcharacter > 0 && sqlResult[0][1].idcharacter > 0)
+        {players.push(sqlResult[0][0]);
+        players.push(sqlResult[0][1]);
+        res.status(200).send(players);
         }
+        else {console.log('please select a character first')}
       })
       .catch((err) => console.log("character not found", err));
-  },
-
-  /// When player push "start Game" this will populate the game ARRAY using the character details
-
-  postGame: (req, res) => {
-    console.log(typeof(players))
-    if (typeof(players[1]) === 'object') {
-      let game = {
-        playerId: players[0].idcharacter,
-        botId: players[1].idcharacter,
-        playerName: players[0].name,
-        botName: players[1].name,
-        playerHealth: players[0].healthstarting,
-        botHealth: players[1].healthstarting,
-        playerHand: [],
-        botHand: [],
-      };
-      res.status(200).send(game) 
-      .catch((err) => console.log("characters not found", err));;
-    } else {
-      console.log('charactes not ready')
-      res.status(500).send('characters not ready')}
-   
-    // .then(() => {
-    //   res.status(200).send(game);
-    // });
   },
 
   getCharacters: (req, res) => {
@@ -79,6 +47,33 @@ module.exports = {
         res.status(200).send(characters[0]);
       })
       .catch((err) => console.log("characters not found", err));
+  },
+
+  postPlayer1: (req, res) => {
+    let { id } = req.body;
+    sequelize
+      .query(`SELECT * FROM characters WHERE idCharacter = ${id}`)
+      .then((sqlResult) => {
+        playerObj = sqlResult[0][0];
+        players.push(playerObj);
+        res.status(200).send(players);
+      })
+      .catch((err) => console.log("character not found", err));
+  },
+
+  postGame: (req, res) => {
+    if (playerObj.idcharacter > 0) {
+      let idBot = Math.floor(Math.random() * 2) + 1;
+      sequelize
+        .query(`SELECT * FROM characters WHERE idCharacter = ${idBot}`)
+        .then((sqlResult) => {
+          botObj = sqlResult[0][0];
+          res.status(200).send(botObj.name);
+        })
+        .catch((err) => console.log("character not found", err));
+    } else {
+      res.status(400).send("Select a player first");
+    }
   },
 
   seedGame: (req, res) => {
