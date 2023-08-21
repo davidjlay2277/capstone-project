@@ -52,7 +52,6 @@ module.exports = {
   },
 
   /// When player push "start Game" this will populate the game ARRAY using the character details
-
   postGame: (req, res) => {
     if (typeof players[1] === "object") {
       gameCurrent = {
@@ -71,10 +70,6 @@ module.exports = {
       console.log("charactes not ready");
       res.status(500).send("characters not ready");
     }
-
-    // .then(() => {
-    //   res.status(200).send(game);
-    // });
   },
 
   getCharacters: (req, res) => {
@@ -86,26 +81,19 @@ module.exports = {
       .catch((err) => console.log("characters not found", err));
   },
 
-  seedGame: (req, res) => {
+  logGame: (req, res) => {
+    let winner = 'in progress'
+    if (gameCurrent.bothealth > 0) {winner = gameCurrent.playerId}
+    if (gameCurrent.playerHealth === 0) {winner = gameCurrent.botId}
     sequelize
       .query(
-        `
-        DROP TABLE IF EXISTS game;
-        CREATE TABLE game(
-          idGame SERIAL PRIMARY KEY
-          ,idUserCharacter INTEGER REFERENCES characters(idCharacter)
-          ,idBotCharacter INTEGER REFERENCES characters(idCharacter)
-          ,userHealth INTEGER
-          ,botHealth INTEGER
-          ,winner VARCHAR(100)
-        );
-          INSERT INTO game (idUserCharacter, idBotCharacter, winner) 
+        ` INSERT INTO game (idUserCharacter, idBotCharacter, winner) 
           VALUES
-          (1,2,'inProgress');
+          (${gameCurrent.playerId},${gameCurrent.botId},${winner});
           `
       )
       .then(() => {
-        console.log("game seeded");
+        console.log("game logged in db");
         res.sendStatus(200);
       })
       .catch((err) => console.log("Error: game not seeded in DB", err));

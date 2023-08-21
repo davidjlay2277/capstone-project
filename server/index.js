@@ -8,12 +8,12 @@ app.use(cors());
 app.use(express.json());
 
 const { SERVER_PORT } = process.env;
-const { seedGame, getCharacters, getGame, postGame, postPlayers } = require("./ctrl.js");
+const { logGame, getCharacters, getGame, postPlayers, postGame } = require("./ctrl.js");
 
 //BASE URL  'http://localhost:4477'
 
 //NOTE USED YET
-app.post("/newGame", seedGame);
+app.put("/logGame", logGame);
 
 app.get("/characters", getCharacters)
 app.get("/currentGame", getGame )

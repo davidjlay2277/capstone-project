@@ -46,3 +46,12 @@ VALUES
 ,(4,3,3)
 ,(4,5,1)
 ,(4,1,4);
+
+ CREATE TABLE game(
+          idGame SERIAL PRIMARY KEY
+          ,idUserCharacter INTEGER REFERENCES characters(idCharacter)
+          ,idBotCharacter INTEGER REFERENCES characters(idCharacter)
+          ,userHealth INTEGER
+          ,botHealth INTEGER
+          ,winner VARCHAR(100)
+        );
