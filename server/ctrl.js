@@ -17,7 +17,22 @@ let gameCurrent = {};
 let playerHand = [];
 let botHand = [];
 
+// const drawCards = (arr) => {
+// arr.map
+//   }
+
+const drawCards = (arr) => {
+  return arr.map((card) => {
+    return Object.assign({}, card, { status: "hand" });
+  });
+};
+
 module.exports = {
+  postCard: (req, res) => {
+let idCard = 1
+let playedCard = gameCUrrent.playerHand.indexOf()   
+
+  },
   getGame: (req, res) => {
     if (gameStatus) {
       res.status(200).send(gameCurrent);
@@ -60,14 +75,14 @@ module.exports = {
           `SELECT * FROM cards AS t1 INNER JOIN characters AS t2 on t1.idcharacter = t2.idcharacter WHERE t2.idCharacter = 1;`
         )
         .then((sqlResult1) => {
-          playerHand = sqlResult1[0];
+          playerHand = drawCards(sqlResult1[0]);
 
           return sequelize.query(
             `SELECT * FROM cards AS t1 INNER JOIN characters AS t2 on t1.idcharacter = t2.idcharacter WHERE t2.idCharacter = 2;`
           );
         })
         .then((sqlResult2) => {
-          botHand = sqlResult2[0];
+          botHand = drawCards(sqlResult2[0]);
 
           gameCurrent = {
             playerId: players[0].idcharacter,
