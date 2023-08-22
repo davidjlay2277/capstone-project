@@ -47,8 +47,9 @@ VALUES
 ,(4,5,1)
 ,(4,1,4);
 
- CREATE TABLE game(
+ CREATE TABLE gameStats(
           idGame SERIAL PRIMARY KEY
+          ,playerName VARCHAR(100)
           ,idUserCharacter INTEGER REFERENCES characters(idCharacter)
           ,idBotCharacter INTEGER REFERENCES characters(idCharacter)
           ,userHealth INTEGER

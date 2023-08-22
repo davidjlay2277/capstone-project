@@ -14,8 +14,6 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
 let gameStatus = false;
 let players = [];
 let gameCurrent = {};
-
-//put these in game
 let playerHand = [];
 let botHand = [];
 
@@ -29,14 +27,18 @@ module.exports = {
   },
   /// CREATE THE players ARRAY using the selected character and a random bot
   postPlayers: (req, res) => {
-    let { id } = req.body;
-    let idBot = Math.floor(Math.random() * 2) + 1;
+    let id = 1;
+    let idBot = 2;
+    // let { id } = req.body;
+    // let idBot = Math.floor(Math.random() * 2) + 1;
     sequelize
       .query(
         `SELECT * FROM characters WHERE idCharacter = ${id};
               SELECT * FROM characters WHERE idCharacter = ${idBot}`
       )
       .then((sqlResult) => {
+        console.log(sqlResult[0][0]);
+        console.log(sqlResult[0][1]);
         if (
           sqlResult[0][0].idcharacter > 0 &&
           sqlResult[0][1].idcharacter > 0
@@ -51,23 +53,40 @@ module.exports = {
       .catch((err) => console.log("character not found", err));
   },
 
-  /// When player push "start Game" this will populate the game ARRAY using the character details
   postGame: (req, res) => {
     if (typeof players[1] === "object") {
-      gameCurrent = {
-        playerId: players[0].idcharacter,
-        botId: players[1].idcharacter,
-        playerName: players[0].name,
-        botName: players[1].name,
-        playerHealth: players[0].healthstarting,
-        botHealth: players[1].healthstarting,
-        playerHand: [],
-        botHand: [],
-      };
-      gameStatus = true;
-      res.status(200).send(gameCurrent);
+      sequelize
+        .query(
+          `SELECT * FROM cards AS t1 INNER JOIN characters AS t2 on t1.idcharacter = t2.idcharacter WHERE t2.idCharacter = 1;`
+        )
+        .then((sqlResult1) => {
+          playerHand = sqlResult1[0];
+
+          return sequelize.query(
+            `SELECT * FROM cards AS t1 INNER JOIN characters AS t2 on t1.idcharacter = t2.idcharacter WHERE t2.idCharacter = 2;`
+          );
+        })
+        .then((sqlResult2) => {
+          botHand = sqlResult2[0];
+
+          gameCurrent = {
+            playerId: players[0].idcharacter,
+            botId: players[1].idcharacter,
+            playerName: players[0].name,
+            botName: players[1].name,
+            playerHealth: players[0].healthstarting,
+            botHealth: players[1].healthstarting,
+            playerHand: playerHand,
+            botHand: botHand,
+          };
+
+          gameStatus = true;
+          res.status(200).send(gameCurrent);
+        })
+        .catch((error) => {
+          res.status(500).send("Error occurred: " + error.message);
+        });
     } else {
-      console.log("charactes not ready");
       res.status(500).send("characters not ready");
     }
   },
@@ -82,14 +101,22 @@ module.exports = {
   },
 
   logGame: (req, res) => {
-    let winner = 'in progress'
-    if (gameCurrent.bothealth > 0) {winner = gameCurrent.playerId}
-    if (gameCurrent.playerHealth === 0) {winner = gameCurrent.botId}
+    let playerName = req.body.playerName;
+
+    console.log(playerName);
+    let winner = "test  working";
+
+    if (gameCurrent.bothealth > 0) {
+      winner = gameCurrent.playerId;
+    }
+    if (gameCurrent.playerHealth === 0) {
+      winner = gameCurrent.botId;
+    }
     sequelize
       .query(
-        ` INSERT INTO game (idUserCharacter, idBotCharacter, winner) 
+        ` INSERT INTO gamestats (playerName, idUserCharacter, idBotCharacter, userHealth, botHealth, winner) 
           VALUES
-          (${gameCurrent.playerId},${gameCurrent.botId},${winner});
+          ('${playerName}', ${gameCurrent.playerId}, ${gameCurrent.botId}, ${gameCurrent.playerHealth}, ${gameCurrent.botHealth}, '${winner}');
           `
       )
       .then(() => {

@@ -8,18 +8,19 @@ app.use(cors());
 app.use(express.json());
 
 const { SERVER_PORT } = process.env;
-const { logGame, getCharacters, getGame, postPlayers, postGame } = require("./ctrl.js");
+const {
+  getCharacters,
+  getGame,
+  postPlayers,
+  postGame,
+  logGame
+} = require("./ctrl.js");
 
-//BASE URL  'http://localhost:4477'
-
-//NOTE USED YET
-app.put("/logGame", logGame);
-
-app.get("/characters", getCharacters)
-app.get("/currentGame", getGame )
-
+//BASE URL 'http://localhost:4477'
+app.get("/characters", getCharacters);
+app.get("/currentGame", getGame);
 app.post("/players", postPlayers);
-app.post("/startGame", postGame)
-
+app.post("/startGame", postGame);
+app.put("/logGame", logGame);
 
 app.listen(SERVER_PORT, () => console.log(`server running on ${SERVER_PORT}`));
