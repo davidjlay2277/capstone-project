@@ -82,8 +82,8 @@ const discard = (arr, id) => {
   card.status = "discard";
   return arr;
 };
-let playerCardId = 1;
-let botCardId = 1;
+let playerCardId = 2;
+let botCardId = 3;
 let { playerHand, botHand, playerHealth, botHealth } = gameCurrent;
 let playerCard = findCard(playerHand, playerCardId);
 let botCard = findCard(botHand, botCardId);
@@ -101,15 +101,17 @@ let botDamage = damageCalc(
 playerHand = discard(playerHand, playerCardId);
 botHand = discard(botHand, botCardId);
 
+console.log('this is playerHand'.playerHand, '\n')
+
 Object.assign(gameCurrent, {
   playerHealth: playerDamage,
   botHealth: botDamage,
-  playerhand: playerHand,
+  playerHand: playerHand,
   botHand: botHand,
 });
 
 console.log('player card: ', playerCardId,'\n');
-console.log('bot: card: ', botCardId,'\n');
+console.log('bot card: ', botCardId,'\n');
 
 console.log('resulting GAME ', gameCurrent);
 // let playerCard = playerHand.find((e) => e.idcard === cardId);

@@ -1,5 +1,3 @@
-module.exports = {
-
 const playerHand = [
     {
       idcard: 1,
@@ -64,4 +62,3 @@ let gameCurrent = {
         playerHand: playerHand,
         botHand: botHand,
       };
-}
