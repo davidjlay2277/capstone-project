@@ -11,15 +11,13 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
   },
 });
 
-let gameStatus = false;
-let players = [];
 let gameCurrent = {};
+let players = [];
 let playerHand = [];
 let botHand = [];
 
-// const drawCards = (arr) => {
-// arr.map
-//   }
+let gameStatus = false;
+let botCardsPlayed = 0;
 
 const drawCards = (arr) => {
   return arr.map((card) => {
@@ -27,12 +25,20 @@ const drawCards = (arr) => {
   });
 };
 
+const playCard = (id) => {
+  return Object.assign({});
+};
+
 module.exports = {
   postCard: (req, res) => {
-let idCard = 1
-let playedCard = gameCUrrent.playerHand.indexOf()   
-
+    let cardId = req.body.idcard;
+    let botCardId = 2;
+    const playerCard = gameCurrent.playerHand.find((e) => e.idcard === cardId);
+    let { playerHand, botHand } = gameCurrent;
+    let { attackvalue, defensevalue, cardstatus } = playerCard;
+    res.status(200).send(playerCard);
   },
+
   getGame: (req, res) => {
     if (gameStatus) {
       res.status(200).send(gameCurrent);
@@ -52,8 +58,6 @@ let playedCard = gameCUrrent.playerHand.indexOf()
               SELECT * FROM characters WHERE idCharacter = ${idBot}`
       )
       .then((sqlResult) => {
-        console.log(sqlResult[0][0]);
-        console.log(sqlResult[0][1]);
         if (
           sqlResult[0][0].idcharacter > 0 &&
           sqlResult[0][1].idcharacter > 0
@@ -67,7 +71,7 @@ let playedCard = gameCUrrent.playerHand.indexOf()
       })
       .catch((err) => console.log("character not found", err));
   },
-
+  //////////////////// INITIAILIZE THE GAME //////////////////////////////
   postGame: (req, res) => {
     if (typeof players[1] === "object") {
       sequelize
@@ -105,7 +109,7 @@ let playedCard = gameCUrrent.playerHand.indexOf()
       res.status(500).send("characters not ready");
     }
   },
-
+  /////////////////// GET ALL PLAYER READY CHARACTERS ////////////////
   getCharacters: (req, res) => {
     sequelize
       .query(`SELECT * FROM characters WHERE status = 'readyPlayer'`)
@@ -114,13 +118,10 @@ let playedCard = gameCUrrent.playerHand.indexOf()
       })
       .catch((err) => console.log("characters not found", err));
   },
-
+  /////////////// LOG THE GAME STATS AT GAME END /////////////////
   logGame: (req, res) => {
     let playerName = req.body.playerName;
-
-    console.log(playerName);
     let winner = "test  working";
-
     if (gameCurrent.bothealth > 0) {
       winner = gameCurrent.playerId;
     }
