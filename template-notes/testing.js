@@ -66,6 +66,14 @@ let gameCurrent = {
   ],
 };
 
+// const damageCalc = (num1, num2) => {
+//   if (num1 - num2 < 0) {
+//     return 0;
+//   } else {
+//     return num1 - num2;
+//   }
+// };
+
 const damageCalc = (num1, num2) => {
   if (num1 - num2 < 0) {
     return 0;
@@ -73,8 +81,9 @@ const damageCalc = (num1, num2) => {
     return num1 - num2;
   }
 };
+
 const findCard = (arr, id) => {
-  return arr.find((e) => e.idcard === id);
+  let Obj = arr.find((e) => e.idcard === id);
 };
 
 const discard = (arr, id) => {
@@ -85,8 +94,8 @@ const discard = (arr, id) => {
 let playerCardId = 2;
 let botCardId = 3;
 let { playerHand, botHand, playerHealth, botHealth } = gameCurrent;
-let playerCard = findCard(playerHand, playerCardId);
-let botCard = findCard(botHand, botCardId);
+let playerCard = findCard(playerHand, playerCardId); //Object
+let botCard = findCard(botHand, botCardId); //object
 
 let playerDamage = damageCalc(
   playerHealth,

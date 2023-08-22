@@ -11,93 +11,123 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
   },
 });
 
+let gameCurrent = {};
 let players = [];
-let playerObj = {};
-let botObj = {};
-let game = [];
 let playerHand = [];
 let botHand = [];
+let gameStatus = false;
+let botCardsPlayed = 0;
+
+const drawCards = (arr) => {
+  return arr.map((card) => {
+    return Object.assign({}, card, { status: "hand" });
+  });
+};
+const findCard = (arr, id) => {
+  return arr.find((e) => e.idcard === id);
+};
+
+const damageCalc = (num1, num2) => {
+  if (num1 - num2 < 0) {
+    return 0;
+  } else {
+    return num1 - num2;
+  }
+};
+
+const discard = (arr, id) => {
+  const card = findCard(arr, id);
+  card.status = "discard";
+  return arr;
+};
 
 module.exports = {
-  getGame: (req, res) => {
-    console.log("hit on get game");
-  },
+  postCard: (req, res) => {
+    let playerCardId = 2;
+    let botCardId = 7;
+    let { playerHand, botHand, playerHealth, botHealth } = gameCurrent;
+    
+    
+    let playerCard = findCard(playerHand, playerCardId);
+    let botCard = findCard(botHand, botCardId);
 
-  getPlayers: (req, res) => {
-    let { id } = req.body;
-    let idBot = Math.floor(Math.random() * 2) + 1;
-  sequelize
-      .query(`SELECT * FROM characters WHERE idCharacter = ${id};
-              SELECT * FROM characters WHERE idCharacter = ${idBot}`)
-      .then((sqlResult) => {
-      if (sqlResult[0][0].idcharacter > 0 && sqlResult[0][1].idcharacter > 0)
-        {players.push(sqlResult[0][0]);
-        players.push(sqlResult[0][1]);
-        res.status(200).send(players);
-        }
-        else {console.log('please select a character first')}
-      })
-      .catch((err) => console.log("character not found", err));
-  },
+    let playerDamage = damageCalc(
+      playerHealth,
+      damageCalc(botCard.attackValue, playerCard.defenseValue)
+    );
+    let botDamage = damageCalc(
+      botHealth,
+      damageCalc(playerCard.attackValue, botCard.defenseValue)
+    );
+    playerHand = discard(playerHand, playerCardId);
+    botHand = discard(botHand, botCardId);
 
-  getCharacters: (req, res) => {
-    sequelize
-      .query(`SELECT * FROM characters WHERE status = 'readyPlayer'`)
-      .then((characters) => {
-        res.status(200).send(characters[0]);
-      })
-      .catch((err) => console.log("characters not found", err));
-  },
+    Object.assign(gameCurrent, {
+      playerHealth: playerDamage,
+      botHealth: botDamage,
+      playerHand: playerHand,
+      botHand: botHand,
+    });
+    res.status(200).send(gameCurrent);
+  }}
 
-  postPlayer1: (req, res) => {
-    let { id } = req.body;
-    sequelize
-      .query(`SELECT * FROM characters WHERE idCharacter = ${id}`)
-      .then((sqlResult) => {
-        playerObj = sqlResult[0][0];
-        players.push(playerObj);
-        res.status(200).send(players);
-      })
-      .catch((err) => console.log("character not found", err));
-  },
 
-  postGame: (req, res) => {
-    if (playerObj.idcharacter > 0) {
-      let idBot = Math.floor(Math.random() * 2) + 1;
-      sequelize
-        .query(`SELECT * FROM characters WHERE idCharacter = ${idBot}`)
-        .then((sqlResult) => {
-          botObj = sqlResult[0][0];
-          res.status(200).send(botObj.name);
+
+
+
+
+
+
+
+  module.exports = {
+    postCard: (req, res) => {
+      let playerCardId = 2;
+      let botCardId = 7;
+      let { playerHand, botHand, playerHealth, botHealth } = gameCurrent;
+  
+      const playerCardPromise = new Promise((resolve) => {
+        let playerCard = findCard(playerHand, playerCardId);
+        resolve(playerCard);
+      });
+  
+      const botCardPromise = new Promise((resolve) => {
+        let botCard = findCard(botHand, botCardId);
+        resolve(botCard);
+      });
+  
+      const playerHealthPromise = Promise.resolve(playerHealth);
+      const botHealthPromise = Promise.resolve(botHealth);
+  
+      Promise.all([
+        playerCardPromise,
+        botCardPromise,
+        playerHealthPromise,
+        botHealthPromise
+      ])
+        .then(([playerCard, botCard, playerHealth, botHealth]) => {
+          let playerDamage = damageCalc(
+            playerHealth,
+            damageCalc(botCard.attackValue, playerCard.defenseValue)
+          );
+          let botDamage = damageCalc(
+            botHealth,
+            damageCalc(playerCard.attackValue, botCard.defenseValue)
+          );
+          playerHand = discard(playerHand, playerCardId);
+          botHand = discard(botHand, botCardId);
+  
+          Object.assign(gameCurrent, {
+            playerHealth: playerDamage,
+            botHealth: botDamage,
+            playerHand: playerHand,
+            botHand: botHand,
+          });
+  
+          res.status(200).send(gameCurrent);
         })
-        .catch((err) => console.log("character not found", err));
-    } else {
-      res.status(400).send("Select a player first");
+        .catch((error) => {
+          res.status(500).send("Error occurred: " + error.message);
+        });
     }
-  },
-
-  seedGame: (req, res) => {
-    sequelize
-      .query(
-        `
-        DROP TABLE IF EXISTS game;
-        CREATE TABLE game(
-          idGame SERIAL PRIMARY KEY
-          ,idUserCharacter INTEGER REFERENCES characters(idCharacter)
-          ,idBotCharacter INTEGER REFERENCES characters(idCharacter)
-          ,userHealth INTEGER
-          ,botHealth INTEGER
-          ,winner VARCHAR(100)
-        );
-          INSERT INTO game (idUserCharacter, idBotCharacter, winner) 
-          VALUES
-          (1,2,'inProgress');
-          `
-      )
-      .then(() => {
-        console.log("game seeded");
-        res.sendStatus(200);
-      })
-      .catch((err) => console.log("Error: game not seeded in DB", err));
-  },
-};
+  };
+  

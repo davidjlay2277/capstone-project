@@ -13,7 +13,7 @@ const {
   getGame,
   postPlayers,
   postGame,
-  postCard,
+  postCard2,
   logGame
 } = require("./ctrl.js");
 
@@ -22,7 +22,7 @@ app.get("/characters", getCharacters);
 app.get("/currentGame", getGame);
 app.post("/players", postPlayers);
 app.post("/startGame", postGame);
-app.post("/playCard", postCard);
+app.post("/playCard", postCard2);
 app.put("/logGame", logGame);
 
 app.listen(SERVER_PORT, () => console.log(`server running on ${SERVER_PORT}`));
