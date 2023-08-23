@@ -11,114 +11,77 @@
       <h1>Create an Inspirational Card</h1>
     </div>
         <div class= "feature-list" >
-        <h2>Features</h2>
+        <h2>OTHER BUTTONS ?</h2>
           <ul>
-            <li>Select the type of background image you would like to see.</li>
-            <li>Let us know how you feel with the check boxes and we'll send a message.</li>
-            <li>Select a compliment category to generate a compliment.</li>
-            <li>Test your luck by pulling in a fortune.</li>
-                       <ul>
-              <li>You can also Submit a possible fortune of your own</li>
-              <li>Tip: You can you remove your last submission. Repeat as needed to delete more history.</li>
-              <li>Don't get greedy!</li>
-            </ul>
-            <li>Use the refresh button to clear the contnet.</li> 
-            
+            <li>Instructions?.</li>
           </ul>
               </div>
-     <div class = "card-container">
-      <section class="features" id= "features">
-                <div>
-          <form id="imageType">
-            <div>
-              <input type="radio" id="calm" name="imageType" value="calm">
-              <label for="silly">Calm</label>
-            </div>
-        
-            <div>
-              <input type="radio" id="inspiring" name="imageType" value="inspiring">
-              <label for="inspiring">Inspiring</label>
-            </div>
-        
-            <div>
-              <input type="radio" id="Ominous" name="imageType" value="ominous">
-              <label for="Ominous">Ominous</label>
-            </div>
-              <br/>
-              <button id="img-btn">Get a background</button>
-          </form>
-         </div>
-    
-          <div>   
-            <form id="messageType">
-             
-              How do you feel? Check all that apply
-              <div class="box-item">
-                <div class = "box-item">
-                  <input type="checkbox" class="checkboxes" name="message" value="1" />
-                  <label for="op1"> ecstatic</label>
-                </div>
-                <div class = "box-item">
-                  <input type="checkbox" class="checkboxes"  name="message" value="2" />
-                  <label for="op2"> discouraged </label>
-                </div>
-                <div class = "box-item">
-                  <input type="checkbox" class="checkboxes"  name="message" value="4" />
-                  <label for="opt3"> confused </label>
-                </div>             
-              </div>
-              <button id = "message-btn">Get a message</button>
-            </form>
-          </div>
-         
-    
-          <div>
-          
-            <form id= "complimentForm" >
-              <label for="complimentInput">Choose your flavor of compliment</label>
-              <select id="compliment-input" name="complimentInput">
-                <option id="generic" value="0">Generic</option>
-                <option id="coding" value="1">Coding skills</option>
-                <option id="face" value="2">Facail features</option>
-                <option id ="condescending" value="3">Slightly condescending</option>
-              </select>
-              <br>
-              <button id="compliment-btn">Get a compliment</button>
-            </form>   
-           
-          </div>
 
-          <div>
-          <form id="new-fortune-form"> <label>Fortune Generator</label>
-            <input id="create-fortune" type="text" placeholder="Type a new fortune"/> 
-            <button id="add-fortune-btn"> Add new entry</button>  
-            <button id="remove-fortune-btn">Remove previous entry</button>
-            <button id="get-fortune-btn" >Generate a fortune</button> 
-          </form> 
-         
-        </div>
-         
-               </section> 
-       
-    <div id="my-card"> 
-      <div id="image-container">
-            <!-- Insert User selected image -->
-      </div>
-             <div class = "card-content"> 
-       <h2 class = "welcome"> Welcome</h2> 
-        <br>
-          <div id="message">  </div>
-        <br>
-          <div id="compliment"> </div>
-        <br>
-          <div id="fortune">  </div>
-      </div>
+<!------- BEGIN MAIN ---------->
+     <div class = "card-container">
+
+<!------------------------ BEGIN PLAYER AREA -------------------------------->
+<section class="features" id= "features">
+  <div><h2>Player</h2></div>
+  <div>   
+    <form id= "character-selector" >
+      <label for="character-input">Choose a character</label>
+        <select id="compliment-input" name="complimentInput">
+          <option id="1" value="0">char 1</option>
+          <option id="2" value="1">char 2</option>
+          <option id="3" value="2">char 3</option>
+        </select>
+      <br><button id="compliment-btn">Select</button>
+    </form>       
+  </div>
+
+  <div id ="player-cards">
+    <div><p>Card 1</p><button id="play-card-1">Play Card</button></div>
+    <div><p>Card 1</p><button id="play-card-2">Play Card</button></div>     
+    <div><p>Card 1</p><button id="play-card-3">Play Card</button></div>            
+    <div><p>Card 1</p><button id="play-card-4">Play Card</button></div>      
+    <div><p>Card 1</p><button id="play-card-5">Play Card</button></div>       
+  </div>
+
+  <div><br> discrad pile ?? </div>     
+</section>  
+<!------------------------ END PLAYER AREA -------------------------------->
+
+<!------------------------- BEGIN GAME AREA ------------------------------------->
+  
+<div id="my-card"> 
+    <div id="image-container">
+      <img class = card-background src="https://static.wikia.nocookie.net/starwars/images/a/af/HolochessTable-SW100Objects.png" alt ="inspiring"></img>
+    </div>
+    
+    <div class = "card-content"> 
+      <h2 class = "welcome"> Game </h2> <br>
+        <div id="message">  </div> <br>
+        <div id="compliment"> </div> <br>
+        <div id="fortune"> </div>
     </div>
   </div>
-        <div class = "refresh">
-          <button id="refresh-btn">Refresh Card</button>
-        </div>
+<!------------------------- END GAME AREA ------------------------------------->
 
+<!------------------------ BEGIN BOT AREA -------------------------------->
+<section class="features" id= "features">
+    <div> <h2>Bot</h2></div>
+    <div> div -- OTHER THINGS -- div  </div>
+  <div id ="bot-cards">
+      <div>
+        <p>Card 1</p>
+        <p>Card 2</p>
+        <p>Card 3</p>
+        <p>Card 4</p>
+        <p>Card 5</p>  
+      </div>
+  <div> <br> discrad pile ?? </div>
+</section>
+<!------------------------ END BOT AREA -------------------------------->
+  </div>
+        <div class = "refresh">
+          <button id="refresh-btn">Log Game</button>
+        </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="main.js"></script>
   </body>

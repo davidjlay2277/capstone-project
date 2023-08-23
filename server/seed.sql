@@ -16,11 +16,11 @@ VALUES
 CREATE TABLE cards(
   idCard SERIAL PRIMARY KEY
   ,idCharacter INTEGER REFERENCES characters(idCharacter)
-  ,attack_value INTEGER 
-  ,defense_value INTEGER
+  ,attackValue INTEGER 
+  ,defenseValue INTEGER
   ,cardStatus VARCHAR(30) DEFAULT 'deck'
 );
-INSERT INTO cards(idCharacter, attack_value, defense_value)
+INSERT INTO cards(idCharacter, attackValue, defenseValue)
 VALUES 
 --LUKE
 (1,4,2)
@@ -47,9 +47,8 @@ VALUES
 ,(4,5,1)
 ,(4,1,4);
 
- CREATE TABLE gameStats(
+ CREATE TABLE game(
           idGame SERIAL PRIMARY KEY
-          ,playerName VARCHAR(100)
           ,idUserCharacter INTEGER REFERENCES characters(idCharacter)
           ,idBotCharacter INTEGER REFERENCES characters(idCharacter)
           ,userHealth INTEGER
