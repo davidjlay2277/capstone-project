@@ -1,6 +1,5 @@
 require("dotenv").config();
 const { CONNECTION_STRING } = process.env;
-
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(CONNECTION_STRING, {
   dialect: "postgress",
@@ -12,12 +11,17 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
 });
 
 let gameCurrent = {};
+let totalBots;
 let players = [];
 let playerHand = [];
 let botHand = [];
-let gameStatus = false;
 let botCardsPlayed = 0;
+let gameStatus = false;
 
+const shuffle= (arr) => {
+  return arr.sort(() => Math.random() - 0.5);
+  }
+  
 const drawCards = (arr) => {
   return arr.map((card) => {
     return Object.assign({}, card, { status: "hand" });
@@ -26,7 +30,6 @@ const drawCards = (arr) => {
 const findCard = (arr, id) => {
   return arr.find((e) => e.idcard === id);
 };
-
 const damageCalc = (num1, num2) => {
   if (num1 - num2 < 0) {
     return 0;
@@ -34,7 +37,6 @@ const damageCalc = (num1, num2) => {
     return num1 - num2;
   }
 };
-
 const discard = (arr, id) => {
   const card = findCard(arr, id);
   card.status = "discard";
@@ -51,12 +53,11 @@ module.exports = {
   },
 
   postCard: (req, res) => {
-    let playerCardId = 2;
-    let botCardId = 7;
+    let { idcard } = req.body;
+    let botCardId = 6;
     let { playerHand, botHand, playerHealth, botHealth } = gameCurrent;
-    let playerCard = findCard(playerHand, playerCardId);
+    let playerCard = findCard(playerHand, idcard);
     let botCard = findCard(botHand, botCardId);
-
     let playerDamage = damageCalc(
       playerHealth,
       damageCalc(botCard.attackvalue, playerCard.defensevalue)
@@ -65,10 +66,8 @@ module.exports = {
       botHealth,
       damageCalc(playerCard.attackvalue, botCard.defensevalue)
     );
-
-    playerHand = discard(playerHand, playerCardId);
+    playerHand = discard(playerHand, idcard);
     botHand = discard(botHand, botCardId);
-
     Object.assign(gameCurrent, {
       playerHealth: playerDamage,
       botHealth: botDamage,
@@ -80,14 +79,12 @@ module.exports = {
 
   /// CREATE THE players ARRAY using the selected character and a random bot
   postPlayers: (req, res) => {
-    let id = 1;
-    let idBot = 2;
-    // let { id } = req.body;
-    // let idBot = Math.floor(Math.random() * 2) + 1;
+    let { idcharacter } = req.body;
+    let idBot = Math.floor(Math.random() * totalBots);
     sequelize
       .query(
-        `SELECT * FROM characters WHERE idCharacter = ${id};
-              SELECT * FROM characters WHERE idCharacter = ${idBot}`
+        `SELECT * FROM characters WHERE idCharacter = ${idcharacter};
+        SELECT * FROM characters WHERE status LIKE 'readyBot' ORDER BY idCharacter LIMIT 1 OFFSET ${idBot};`
       )
       .then((sqlResult) => {
         if (
@@ -105,21 +102,21 @@ module.exports = {
   },
   //////////////////// INITIAILIZE THE GAME //////////////////////////////
   postGame: (req, res) => {
+    let playerId = players[0].idcharacter;
+    let botId = players[1].idcharacter;
     if (typeof players[1] === "object") {
       sequelize
         .query(
-          `SELECT * FROM cards AS t1 INNER JOIN characters AS t2 on t1.idcharacter = t2.idcharacter WHERE t2.idCharacter = 1;`
+          `SELECT * FROM cards AS t1 INNER JOIN characters AS t2 on t1.idcharacter = t2.idcharacter WHERE t2.idCharacter = ${playerId}`
         )
         .then((sqlResult1) => {
           playerHand = drawCards(sqlResult1[0]);
-
           return sequelize.query(
-            `SELECT * FROM cards AS t1 INNER JOIN characters AS t2 on t1.idcharacter = t2.idcharacter WHERE t2.idCharacter = 2;`
+            `SELECT * FROM cards AS t1 INNER JOIN characters AS t2 on t1.idcharacter = t2.idcharacter WHERE t2.idCharacter = ${botId};`
           );
         })
         .then((sqlResult2) => {
           botHand = drawCards(sqlResult2[0]);
-
           gameCurrent = {
             playerId: players[0].idcharacter,
             botId: players[1].idcharacter,
@@ -130,7 +127,7 @@ module.exports = {
             playerHand: playerHand,
             botHand: botHand,
           };
-
+          shuffle(botHand);
           gameStatus = true;
           res.status(200).send(gameCurrent);
         })
@@ -144,9 +141,15 @@ module.exports = {
   /////////////////// GET ALL PLAYER READY CHARACTERS ////////////////
   getCharacters: (req, res) => {
     sequelize
-      .query(`SELECT * FROM characters WHERE status = 'readyPlayer'`)
+      .query(
+        `SELECT * FROM characters WHERE status = 'readyPlayer';
+              SELECT COUNT(idCharacter) FROM characters WHERE status LIKE 'readyBot'`
+      )
       .then((characters) => {
-        res.status(200).send(characters[0]);
+        let arr1 = characters[0];
+        totalBots = arr1[arr1.length - 1].count;
+        arr1.pop();
+        res.status(200).send(arr1);
       })
       .catch((err) => console.log("characters not found", err));
   },
