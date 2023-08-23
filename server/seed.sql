@@ -16,11 +16,11 @@ VALUES
 CREATE TABLE cards(
   idCard SERIAL PRIMARY KEY
   ,idCharacter INTEGER REFERENCES characters(idCharacter)
-  ,attackValue INTEGER 
-  ,defenseValue INTEGER
+  ,attack_value INTEGER 
+  ,defense_value INTEGER
   ,cardStatus VARCHAR(30) DEFAULT 'deck'
 );
-INSERT INTO cards(idCharacter, attackValue, defenseValue)
+INSERT INTO cards(idCharacter, attack_value, defense_value)
 VALUES 
 --LUKE
 (1,4,2)

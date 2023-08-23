@@ -83,7 +83,7 @@ const damageCalc = (num1, num2) => {
 };
 
 const findCard = (arr, id) => {
-  let Obj = arr.find((e) => e.idcard === id);
+  return arr.find((e) => e.idcard === id);
 };
 
 const discard = (arr, id) => {
@@ -91,12 +91,11 @@ const discard = (arr, id) => {
   card.status = "discard";
   return arr;
 };
-let playerCardId = 2;
-let botCardId = 3;
+let playerCardId = 1;
+let botCardId = 1;
 let { playerHand, botHand, playerHealth, botHealth } = gameCurrent;
 let playerCard = findCard(playerHand, playerCardId); //Object
 let botCard = findCard(botHand, botCardId); //object
-
 let playerDamage = damageCalc(
   playerHealth,
   damageCalc(botCard.attackValue, playerCard.defenseValue)
@@ -109,8 +108,6 @@ let botDamage = damageCalc(
 
 playerHand = discard(playerHand, playerCardId);
 botHand = discard(botHand, botCardId);
-
-console.log('this is playerHand'.playerHand, '\n')
 
 Object.assign(gameCurrent, {
   playerHealth: playerDamage,

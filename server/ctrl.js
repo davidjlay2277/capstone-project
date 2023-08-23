@@ -42,23 +42,30 @@ const discard = (arr, id) => {
 };
 
 module.exports = {
+  getGame: (req, res) => {
+    if (gameStatus) {
+      res.status(200).send(gameCurrent);
+    } else {
+      res.status(500).send("game not ready. retry");
+    }
+  },
+
   postCard: (req, res) => {
     let playerCardId = 2;
     let botCardId = 7;
     let { playerHand, botHand, playerHealth, botHealth } = gameCurrent;
-    
-    
     let playerCard = findCard(playerHand, playerCardId);
     let botCard = findCard(botHand, botCardId);
 
     let playerDamage = damageCalc(
       playerHealth,
-      damageCalc(botCard.attackValue, playerCard.defenseValue)
+      damageCalc(botCard.attackvalue, playerCard.defensevalue)
     );
     let botDamage = damageCalc(
       botHealth,
-      damageCalc(playerCard.attackValue, botCard.defenseValue)
+      damageCalc(playerCard.attackvalue, botCard.defensevalue)
     );
+
     playerHand = discard(playerHand, playerCardId);
     botHand = discard(botHand, botCardId);
 
@@ -71,64 +78,6 @@ module.exports = {
     res.status(200).send(gameCurrent);
   },
 
- postCard2: (req, res) => {
-  
-  let playerCardId = 2;
-  let botCardId = 7;
-  let { playerHand, botHand, playerHealth, botHealth } = gameCurrent;
-
-  const playerCardPromise = new Promise((resolve) => {
-    let playerCard = findCard(playerHand, playerCardId);
-    resolve(playerCard);
-  });
-
-  const botCardPromise = new Promise((resolve) => {
-    let botCard = findCard(botHand, botCardId);
-    resolve(botCard);
-  });
-
-  const playerHealthPromise = Promise.resolve(playerHealth);
-  const botHealthPromise = Promise.resolve(botHealth);
-
-  Promise.all([
-    playerCardPromise,
-    botCardPromise,
-    playerHealthPromise,
-    botHealthPromise
-  ])
-    .then(([playerCard, botCard, playerHealth, botHealth]) => {
-      let playerDamage = damageCalc(
-        playerHealth,
-        damageCalc(botCard.attackValue, playerCard.defenseValue)
-      );
-      let botDamage = damageCalc(
-        botHealth,
-        damageCalc(playerCard.attackValue, botCard.defenseValue)
-      );
-      playerHand = discard(playerHand, playerCardId);
-      botHand = discard(botHand, botCardId);
-
-      Object.assign(gameCurrent, {
-        playerHealth: playerDamage,
-        botHealth: botDamage,
-        playerHand: playerHand,
-        botHand: botHand,
-      });
-
-      res.status(200).send(gameCurrent);
-    })
-    .catch((error) => {
-      res.status(500).send("Error occurred: " + error.message);
-    });
-    },
-  
-  getGame: (req, res) => {
-    if (gameStatus) {
-      res.status(200).send(gameCurrent);
-    } else {
-      res.status(500).send("game not ready. retry");
-    }
-  },
   /// CREATE THE players ARRAY using the selected character and a random bot
   postPlayers: (req, res) => {
     let id = 1;

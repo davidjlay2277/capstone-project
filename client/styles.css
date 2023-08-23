@@ -1,11 +1,171 @@
-* {
-
-}
-
 body {
+    background-color: lightgray;
+  }
+  h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+  }
   
-}
-
-header {
- 
-}
+  h2 {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 2px;
+    color: darkblue;
+  }
+  
+  .heading {
+    background-color: black;
+    color: white;
+  }
+  
+  .feature-list {
+    background-color: lightgray;
+    color: rgb(3, 3, 114);
+  }
+  
+  .card-container {
+    background-color: rgb(71, 130, 167);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+  }
+  
+  .fortune {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .instructions {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    align-content: center;
+    padding-left: 15px;
+    padding-bottom: 5px;
+  }
+  
+  .features {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: top;
+    align-content: center;
+    padding-top: 30px;
+  }
+  
+  form {
+    display: flex;
+    color: rgb(2, 24, 37);
+    font-size: 18px;
+    flex-direction: column;
+    padding: 5px 10px 5px 10px;
+    margin: 10px 10px 20px 10px;
+    border-radius: 5px;
+    border: 1px;
+    border-style: groove;
+    box-shadow: 5px 5px 8px 0 rgba(0, 0, 0, 0.14), 0 2px 4px 0 rgba(0, 0, 0, 0.14);
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  }
+  
+  button {
+    background-color: whitesmoke;
+    color: rgb(2, 24, 37);
+    border: 2px solid rgb(71, 130, 167);
+    font-size: 14px;
+    padding: 5px 10px 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 2px 4px 0 rgba(0, 0, 0, 0.14);
+    opacity: 0.75;
+  }
+  
+  .submit {
+    background-color: whitesmoke;
+    color: blue;
+    border: 2px solid blue;
+    font-size: 14px;
+    padding: 5px 1px 5px 1px;
+    margin: 1px;
+    border-radius: 5px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 2px 4px 0 rgba(0, 0, 0, 0.14);
+    opacity: 0.75;
+  }
+  
+  #get-fortune-btn {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .refresh {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 1px;
+  }
+  
+  .box-item {
+    color: darkblue;
+    background-color: white;
+    margin: 10px;
+    border-radius: 5px;
+  }
+  
+  #my-card {
+    overflow: hidden;
+    position: relative;
+    width: 900px;
+    background-color: whitesmoke;
+    border: 3px solid black;
+    border-style: double;
+    /* padding: 5px 000px 50px 5px; */
+    margin: 30px 30px 30px 30px;
+  }
+  .card-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 130%;
+    height: auto;
+    background-color: rgb(253, 253, 253);
+    opacity: 0.3;
+  }
+  
+  .card-content {
+    position: relative;
+    color: rgb(19, 70, 102);
+    font-size: 32px;
+  }
+  
+  .welcome {
+    margin: 10px;
+  }
+  
+  #message {
+    display: flex;
+    padding-left: 40px;
+  }
+  
+  #compliment {
+    display: flex;
+    padding-left: 40px;
+  }
+  
+  #fortune {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: baseline;
+    align-content: flex-start;
+    margin-left: 80px;
+    margin-top: 10px;
+    font-style: italic;
+  }
+  
