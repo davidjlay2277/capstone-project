@@ -15,51 +15,7 @@ body {
     padding: 2px;
     color: darkblue;
   }
-  
-  .heading {
-    background-color: black;
-    color: white;
-  }
-  
-  .feature-list {
-    background-color: lightgray;
-    color: rgb(3, 3, 114);
-  }
-  
-  .card-container {
-    background-color: rgb(71, 130, 167);
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-content: center;
-  }
-  
-  .fortune {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .instructions {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: left;
-    align-content: center;
-    padding-left: 15px;
-    padding-bottom: 5px;
-  }
-  
-  .features {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: top;
-    align-content: center;
-    padding-top: 30px;
-  }
-  
+
   form {
     display: flex;
     color: rgb(2, 24, 37);
@@ -86,6 +42,58 @@ body {
     opacity: 0.75;
   }
   
+  .heading {
+    background-color: rgb(10, 10, 10);
+    padding: 20px 10px 20px 10px;
+    color: white;
+  }
+  
+  .top {
+    background-color: lightgray;
+    color: rgb(3, 3, 114);
+  }
+  
+  .main {
+    background-color: rgb(71, 130, 167);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+  }
+  
+#character-selector {
+  display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    align-items: top;
+    align-content: center;
+    padding-top: 10px;
+}
+
+  #player-area {
+   
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    align-items: top;
+    align-content: center;
+    padding-top: 10px;
+  }
+  
+  #bot-area {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    align-items: top;
+    align-content: center;
+    padding-top: 10px;
+  }
+
+
   .submit {
     background-color: whitesmoke;
     color: blue;
@@ -97,67 +105,55 @@ body {
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 2px 4px 0 rgba(0, 0, 0, 0.14);
     opacity: 0.75;
   }
-  
-  #get-fortune-btn {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  
-  .refresh {
+    
+  .log-game {
     display: flex;
     justify-content: center;
     padding: 10px;
     margin: 1px;
   }
   
-  .box-item {
-    color: darkblue;
-    background-color: white;
-    margin: 10px;
-    border-radius: 5px;
-  }
-  
-  #my-card {
+  #game-area {
+    /* background-image: url('https://cdn.wallpapersafari.com/38/0/tNfnSd.png') ; */
     overflow: hidden;
     position: relative;
     width: 900px;
-    background-color: whitesmoke;
     border: 3px solid black;
     border-style: double;
     /* padding: 5px 000px 50px 5px; */
     margin: 30px 30px 30px 30px;
   }
-  .card-background {
+  .game-board-img {
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
+    left: 20;
+    top: 20;
+    width: 105%;
     height: auto;
     background-color: rgb(253, 253, 253);
-    opacity: 0.3;
+    opacity: 0.7;
   }
   
-  .card-content {
+  .game-content {
     position: relative;
     color: rgb(19, 70, 102);
     font-size: 32px;
   }
   
-  .welcome {
+  .game-status {
     margin: 10px;
   }
   
-  #message {
+  #player-area {
     display: flex;
     padding-left: 40px;
   }
   
-  #compliment {
+  #bot-area {
     display: flex;
     padding-left: 40px;
   }
   
-  #fortune {
+  #game-actions {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;

@@ -6,67 +6,73 @@
     <title>Epic Duels</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class= "container">
-    <div class = "heading">
-      <h1>Create an Inspirational Card</h1>
+  <body>
+  <div class = "heading">
+    <h1>Star Wars Epic Duels</h1>
+  </div>
+  <div class= "top" >
+    <div>   
+      <form id= "character-selector" >
+        <label for="character-input">Choose a character</label>
+          <select id="character-input" name="character-input">
+            <option id="1" value="0"> char 1</option>
+          </select>
+        <br><button id="character-btn">Select Character</button>
+      </form>       
     </div>
-        <div class= "feature-list" >
-        <h2>OTHER BUTTONS ?</h2>
-          <ul>
-            <li>Instructions?.</li>
-          </ul>
-              </div>
-
-<!------- BEGIN MAIN ---------->
-     <div class = "card-container">
+  </div>
+<div class = "main">
 
 <!------------------------ BEGIN PLAYER AREA -------------------------------->
-<section class="features" id= "features">
-  <div><h2>Player</h2></div>
-  <div>   
-    <form id= "character-selector" >
-      <label for="character-input">Choose a character</label>
-        <select id="compliment-input" name="complimentInput">
-          <option id="1" value="0">char 1</option>
-          <option id="2" value="1">char 2</option>
-          <option id="3" value="2">char 3</option>
-        </select>
-      <br><button id="compliment-btn">Select</button>
-    </form>       
+<section id= "player-area">
+  <div><h2>Select a character first</h2></div>
+  <div class="player-cards">
+    <div class = "box-item">
+      <input type="checkbox" class="checkboxes" name="player-cards" value="1" />
+      <label for="opt1"> card 1</label>
+    </div>
+    <div class = "box-item">
+      <input type="checkbox" class="checkboxes"  name="player-cards" value="2" />
+      <label for="opt2"> card 2 </label>
+    </div>
+    <div class = "box-item">
+      <input type="checkbox" class="checkboxes"  name="player-cards" value="3" />
+      <label for="opt3"> card 3 </label>
+    </div> 
+    <div class = "box-item">
+      <input type="checkbox" class="checkboxes"  name="player-cards" value="4" />
+      <label for="opt4"> card 4 </label>
+    </div> 
+    <div class = "box-item">
+      <input type="checkbox" class="checkboxes"  name="player-cards" value="5" />
+      <label for="opt5"> card 5 </label>
+    </div>             
   </div>
-
-  <div id ="player-cards">
-    <div><p>Card 1</p><button id="play-card-1">Play Card</button></div>
-    <div><p>Card 1</p><button id="play-card-2">Play Card</button></div>     
-    <div><p>Card 1</p><button id="play-card-3">Play Card</button></div>            
-    <div><p>Card 1</p><button id="play-card-4">Play Card</button></div>      
-    <div><p>Card 1</p><button id="play-card-5">Play Card</button></div>       
-  </div>
-
+  <button id="play-card-btn">Play Card</button>
+ 
   <div><br> discrad pile ?? </div>     
 </section>  
-<!------------------------ END PLAYER AREA -------------------------------->
+<!-------------------------- END PLAYER AREA ------------------------------------>
 
 <!------------------------- BEGIN GAME AREA ------------------------------------->
   
-<div id="my-card"> 
+<div id="game-area"> 
     <div id="image-container">
-      <img class = card-background src="https://static.wikia.nocookie.net/starwars/images/a/af/HolochessTable-SW100Objects.png" alt ="inspiring"></img>
+      <img class = "game-board-img" src="https://i.ebayimg.com/images/g/~wsAAOSwknNiGxTL/s-l1200.jpg" alt ="inspiring"></img>
     </div>
-    
-    <div class = "card-content"> 
-      <h2 class = "welcome"> Game </h2> <br>
-        <div id="message">  </div> <br>
-        <div id="compliment"> </div> <br>
-        <div id="fortune"> </div>
+    <button id="start-game-btn">Start Game</button>
+    <div class = "game-content">
+      <h2 class = "game-status"> GAME STATUS </h2> <br>
+        <div id="player-img"> PLAYER IMG </div> <br>
+        <div id="bot-img"> BOT IMG </div> <br>
+        <div id="game-action"> GAME ACTIONS </div>
     </div>
   </div>
 <!------------------------- END GAME AREA ------------------------------------->
 
-<!------------------------ BEGIN BOT AREA -------------------------------->
-<section class="features" id= "features">
+<!------------------------ BEGIN BOT AREA ------------------------------------->
+<section id= "bot-area">
     <div> <h2>Bot</h2></div>
-    <div> div -- OTHER THINGS -- div  </div>
   <div id ="bot-cards">
       <div>
         <p>Card 1</p>
@@ -77,10 +83,12 @@
       </div>
   <div> <br> discrad pile ?? </div>
 </section>
-<!------------------------ END BOT AREA -------------------------------->
-  </div>
-        <div class = "refresh">
-          <button id="refresh-btn">Log Game</button>
+<!------------------------ END BOT AREA --------------------------------------->
+</div>
+<!-- END MAIN -->
+        <div class = "log-game">
+          <button id = "log-game-btn">Log Game</button>
+          <button id = "play-again-btn">Play Again </button>
         </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="main.js"></script>
