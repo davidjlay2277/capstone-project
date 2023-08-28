@@ -47,6 +47,19 @@ form {
   color: #ffd700;
 }
 
+.results {
+  background-color: rgb(10, 10, 10);
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: baseline;
+  background-size: contain;
+  padding: 8px 8px 8px 8px;
+  font-family: "Star Jedi", sans-serif;
+  font-size: 20px;
+  color: #ffd700;
+}
+
 .foot {
   background-color: rgb(10, 10, 10);
   display: flex;
@@ -66,6 +79,9 @@ form {
   font-size: 24px;
   margin: 5px;
   padding: 1px 40px 1px 40px;
+  border-style: groove;
+  border-width: 4px;
+  border-inline-color: black;
 }
 
 .main {
@@ -93,7 +109,7 @@ form {
 }
 
 /* ---------------  BEGIN CARD STYLE ---------------------- */
-.cards {
+.cards-all {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -161,8 +177,8 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 170px;
-  height: 230px;
+  width: 150px;
+  height: 200px;
   padding-top: 6px;
   padding-right: 8px;
   margin: 20px;
@@ -275,7 +291,6 @@ form {
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   /* background-image: url("https://m.media-amazon.com/images/M/MV5BYWU5ODdhZjItZGE3NC00ZjliLThiYWYtMDgyZGU2YjU0MDhkXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_QL75_UX500_CR0,47,500,281_.jpg"); */
-  
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-style: italic;
   font-size: 16pt;
@@ -312,8 +327,6 @@ form {
   background-repeat: no-repeat;
   background-position: center;
 }
-
-
 
 .game-info {
   display: flex;

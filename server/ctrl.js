@@ -44,11 +44,14 @@ const discard = (arr, id) => {
 };
 
 module.exports = {
+
   getGame: (req, res) => {
+    console.log('hit on geGame')
+    console.log(gameStatus)
     if (gameStatus) {
       res.status(200).send(gameCurrent);
     } else {
-      res.status(500).send("game not ready. retry");
+      res.status(500).send("game not ready. Please re-select a character");
     }
   },
 
@@ -97,6 +100,8 @@ module.exports = {
           players.push(sqlResult[0][1]);
           console.log('the players are' , players)
           res.status(200).send(players);
+          gameStatus = true;
+
         } else {
           console.log("please select a character first");
         }
@@ -131,7 +136,7 @@ module.exports = {
             botHand: botHand,
           };
           shuffle(botHand);
-          gameStatus = true;
+          gameStatus = true
           res.status(200).send(gameCurrent);
         })
         .catch((error) => {
