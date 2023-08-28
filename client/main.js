@@ -1,12 +1,15 @@
 const characterBtn = document.getElementById("character-btn");
 const startGameBtn = document.getElementById("start-game-btn");
+//Changed to 'onCLick in HTML
 // const playCardBtn = document.getElementById("play-card-btn");
 const playAgainBtn = document.getElementById("play-again-btn");
 const logGameBtn = document.getElementById("log-game-btn");
 
 const characterSelector = document.getElementById("character-input");
-const player1 = document.getElementById("player1");
-const bot1 = document.getElementById("bot1");
+const playerStatus = document.getElementById("player-status");
+const playerImg = document.getElementById("player-img");
+const botStatus = document.getElementById("bot-status");
+const botImg = document.getElementById("bot-img");
 
 const baseUrl = "http://localhost:4477";
 const errFunction = (err) => {
@@ -25,23 +28,30 @@ const addCharacterNames = (res) => {
   }
 };
 
-const addplayers = (res) => {
-let playerObj = res.data[0]
-let botObj = res.data[1]
-
-player1.innerHTML = `Player 1: ${playerObj.name} <br> Player Health: ${playerObj.healthstarting}
-<br>  <img class = "player-img" src="${playerObj.imgurl}" alt ="player1"></img>`;
-bot1.innerHTML = `CPU: ${botObj.name} <br> CPU Health: ${botObj.healthstarting} 
-<br>  <img class = "player-img" src="${botObj.imgurl}" alt ="player1"></img>`;
-
-console.log(playerObj.name, botObj.name)
+const addplayerNow = (str) => {
+  playerStatus.appendChild(str)
 }
+
+const addplayers = (res) => {
+  let playerObj = res.data[0];
+  let botObj = res.data[1];
+  playerStatus.innerHTML = `<h2>${playerObj.name}</h2>
+<p> Health = ${playerObj.healthstarting}</p>`;
+  botStatus.innerHTML = `<h2>${botObj.name}</h2>
+<p> Health = ${botObj.healthstarting}</p>`;
+
+playerImg.innerHTML = `<div class="background-container"
+style="background-image: url('${playerObj.imgurl}');">
+</div>`
+botImg.innerHTML =  `<div class="background-container"
+style="background-image: url('${botObj.imgurl}');">
+</div>`
+
+};
 
 const startGame = (res) => {
-  
-  console.log(res.data)
-
-}
+  console.log(res.data);
+};
 
 const getCharacters = () => {
   axios.get(`${baseUrl}/characters`).then(addCharacterNames).catch(errFunction);
@@ -50,24 +60,17 @@ const getCharacters = () => {
 const postPlayers = (e) => {
   e.preventDefault();
   let idObj = {
-    idcharacter:  document.getElementById("character-input").value
-  }
-  axios
-    .post(`${baseUrl}/players`, idObj)
-    .then(addplayers)
-    .catch(errFunction);
+    idcharacter: document.getElementById("character-input").value,
+  };
+  axios.post(`${baseUrl}/players`, idObj).then(addplayers).catch(errFunction);
 };
 
 const postGame = (e) => {
   e.preventDefault();
-  axios
-  .post(`${baseUrl}/startGame`)
-  .then(startGame)
-  .catch(errFunction);
-
+  axios.post(`${baseUrl}/startGame`).then(startGame).catch(errFunction);
 };
 const postCard = (num) => {
-  console.log("card ",num," was played");
+  console.log("card ", num, " was played");
 };
 const deleteGame = () => {
   console.log("hit on playAgainBtn");
@@ -86,4 +89,5 @@ characterBtn.addEventListener("click", postPlayers); // user selects a character
 startGameBtn.addEventListener("click", postGame); // user starts the game
 // playCardBtn.addEventListener("click", postCard); // user plays a card
 playAgainBtn.addEventListener("click", deleteGame); // user logs the game
+
 logGameBtn.addEventListener("click", putGame);

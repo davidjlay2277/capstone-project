@@ -10,17 +10,14 @@
 
 <body>
   <div class="heading">
-    <div id="bot-status">
-      <h2>char name</h2>
-      <p> Health = 14</p>
+    <div id="player-status">
     </div>
     <div>
       <h1 id="heading">Star Wars Epic Duels</h1>
 
     </div>
     <div id="bot-status">
-      <h2>bot name</h2>
-      <p> Health = 12</p>
+
     </div>
   </div>
   <div class="main">
@@ -100,24 +97,21 @@
       </div>
 
     </section>
-    <!-------------------------- END PLAYER AREA ------------------------------------>
+    <!-------------------------- END PLAYER AREA ------------------------>
 
-    <!------------------------- BEGIN ACTIVE GAME AREA ------------------------------------->
-
+    <!----------------------- BEGIN ACTIVE GAME AREA -------------------->
     <div class="active-game">
-
       <div class="board-width"></div>
-      <div class="player ">
-        <section>
-          player 1
-        </section>
+      <div  id= "player-img">
+        <!-- <div class="background-container"
+        style="background-image: url('https://bigthink.com/wp-content/uploads/2022/07/AdobeStock_298943877_Editorial_Use_Only.jpeg');">
+     </div> -->
       </div>
 
       <div>
         <form id="character-selector">
           <label for="character-input">Choose a character</label>
           <select id="character-input" name="character-input">
-
           </select>
           <br><button class="button-standard " id="character-btn">Select</button>
         </form>
@@ -150,26 +144,21 @@
               </div>
             </section>
           </div>
-          <div>  N damage given  </div>
+          <div> N damage given </div>
         </div>
       </div>
       <div><button class="button-standard" id="start-game-btn">Resolve Damage</button></div>
       <div><button class="button-standard" id="start-game-btn">Start Game</button></div>
 
       <div class="game-end">
-        <button class="button-standard id=" log-game-btn">Log Game</button>
-        <button class="button-standard id=" play-again-btn">Play Again </button>
+        <button class="button-standard" id="log-game-btn">Log Game</button>
+        <button class="button-standard" id="play-again-btn">Play Again </button>
       </div>
-
-
-      <div class="bot">
-        <section>
-          opponent
-        </section>
-        <section>
-        </section>
-      </div>
-
+        <div  id= "bot-img">
+          <!-- <div class="background-container"
+          style="background-image: url('https://bigthink.com/wp-content/uploads/2022/07/AdobeStock_298943877_Editorial_Use_Only.jpeg');">
+       </div> -->
+        </div>
     </div>
 
     <!------------------------- END ACTIVE GAME AREA ----------------------------->
@@ -248,6 +237,7 @@
 
         </button>
       </div>
+
 
     </section>
     <!------------------------ END BOT AREA --------------------------------------->

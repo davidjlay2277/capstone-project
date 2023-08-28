@@ -256,6 +256,7 @@ form {
 
 .board-width {
   width: 550px;
+  /* height: 10px; */
 }
 
 .player {
@@ -268,13 +269,13 @@ form {
   align-items: left;
   width: 300px;
   height: 150px;
-  padding: 30px;
+  padding: 25px;
   margin: 20px;
-  background-color: #f0f0f0;
+  background-color: #0b0453;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  background-image: url("https://m.media-amazon.com/images/M/MV5BYWU5ODdhZjItZGE3NC00ZjliLThiYWYtMDgyZGU2YjU0MDhkXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_QL75_UX500_CR0,47,500,281_.jpg");
-  background-size: contain;
+  /* background-image: url("https://m.media-amazon.com/images/M/MV5BYWU5ODdhZjItZGE3NC00ZjliLThiYWYtMDgyZGU2YjU0MDhkXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_QL75_UX500_CR0,47,500,281_.jpg"); */
+  
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-style: italic;
   font-size: 16pt;
@@ -292,15 +293,28 @@ form {
   background-color: #7d0404;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  background-image: url("https://pyxis.nymag.com/v1/imgs/d33/3f2/43582166e8b4932e752511e4f9e5b52ea6-boba-fett.rsquare.w330.jpg");
-  background-position: center;
+  /* background-image: url("https://pyxis.nymag.com/v1/imgs/d33/3f2/43582166e8b4932e752511e4f9e5b52ea6-boba-fett.rsquare.w330.jpg"); */
+  /* background-position: center;
   background-size: 90%;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-style: italic;
   color: white;
   font-size: 16pt;
 }
+
+.background-container {
+  width: 300px;
+  height: 125px;
+  padding: 30px;
+  margin: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+
 .game-info {
   display: flex;
   flex-direction: column;
