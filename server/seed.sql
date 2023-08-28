@@ -5,12 +5,16 @@ CREATE TABLE characters(
   ,status VARCHAR(30) NOT NULL
   ,imgURL VARCHAR(500) DEFAULT 'https://inbetweendrafts.com/wp-content/uploads/2023/05/underrated-star-wars-featured-extras-characters-ilm-stan-winston-henson-1.jpg'
 );
-INSERT INTO characters(name, healthstarting, status)
+INSERT INTO characters(name, healthstarting, status, imgURL)
 VALUES
-('Luke Skywalker',18,'readyPlayer')
-,('Han Solo',15,'readyPlayer')
-,('Boba Fett',14,'readyBot')
-,('Darth Vader',22,'readyBot')
+('Luke Skywalker',18,'readyPlayer',
+  'https://m.media-amazon.com/images/M/MV5BYWU5ODdhZjItZGE3NC00ZjliLThiYWYtMDgyZGU2YjU0MDhkXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_QL75_UX500_CR0,47,500,281_.jpg')
+,('Han Solo',15,'readyPlayer',
+  'https://www.usatoday.com/gcdn/presto/2019/11/12/USAT/8ef26a5b-aeff-418d-8de6-dcd4ac409726-han_solo_gun.JPG')
+,('Boba Fett',14,'readyBot',
+  'https://pyxis.nymag.com/v1/imgs/d33/3f2/43582166e8b4932e752511e4f9e5b52ea6-boba-fett.rsquare.w330.jpg')
+,('Darth Vader',22,'readyBot',
+  'https://bigthink.com/wp-content/uploads/2022/07/AdobeStock_298943877_Editorial_Use_Only.jpeg')
 ;
 
 CREATE TABLE cards(

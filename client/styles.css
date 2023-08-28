@@ -1,12 +1,10 @@
 body {
-  /* background-image: url('https://e0.pxfuel.com/wallpapers/110/994/desktop-wallpaper-star-wars-space-battle.jpg'); */
-
   background-image: url("https://mcdn.wallpapersafari.com/medium/63/64/7SAO3h.jpg");
-
   background-color: rgba(255, 255, 255, 0.001);
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 h1 {
   display: flex;
   align-items: center;
@@ -18,7 +16,7 @@ form {
   background-color: #09090a;
   color: #ffd700;
   display: flex;
-  align-items: centergb(8, 8, 8)
+  align-items: centergb(8, 8, 8);
   color: #ffd700;
   font-size: 24px;
   flex-direction: column;
@@ -33,6 +31,8 @@ form {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
+/* ERROR UP ----------------------------- */
+
 .heading {
   background-color: rgb(10, 10, 10);
   display: flex;
@@ -40,7 +40,6 @@ form {
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: baseline;
-  /* background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1041px-Star_Wars_Logo.svg.png') ; */
   background-size: 8%;
   padding: 10px 10px 10px 10px;
   font-family: "Star Jedi", sans-serif;
@@ -55,7 +54,6 @@ form {
   justify-content: center;
   align-items: center;
   align-content: center;
-  /* background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1041px-Star_Wars_Logo.svg.png') ; */
   padding: 10px 10px 10px 10px;
   font-family: "Star Jedi", sans-serif;
   font-size: 24px;
@@ -134,8 +132,6 @@ form {
   overflow: hidden; /* Clip the upper half */
   background-color: rgb(219, 47, 47);
 }
-/* CARD BACKGROUND OPTION  */
-/* https://static.displate.com/857x1200/displate/2019-07-05/1a2a328ed2993130087fe27d6cc83bd0_d8a8c08c0c2c73502221efd65cfebc81.jpg */
 
 .defend-circle {
   width: 80px;
@@ -278,6 +274,7 @@ form {
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   background-image: url("https://m.media-amazon.com/images/M/MV5BYWU5ODdhZjItZGE3NC00ZjliLThiYWYtMDgyZGU2YjU0MDhkXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_QL75_UX500_CR0,47,500,281_.jpg");
+  background-size: contain;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-style: italic;
   font-size: 16pt;
@@ -295,7 +292,7 @@ form {
   background-color: #7d0404;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  background-image: url("https://bigthink.com/wp-content/uploads/2022/07/AdobeStock_298943877_Editorial_Use_Only.jpeg?resize=680,382");
+  background-image: url("https://pyxis.nymag.com/v1/imgs/d33/3f2/43582166e8b4932e752511e4f9e5b52ea6-boba-fett.rsquare.w330.jpg");
   background-position: center;
   background-size: 90%;
   background-repeat: no-repeat;
@@ -311,7 +308,6 @@ form {
   justify-content: space-between;
   align-items: center;
   align-content: center;
-  /* width: 275px; */
   height: 175px;
   padding: 1px 30px 1px 30px;
   background-color: #f0f0f0;
