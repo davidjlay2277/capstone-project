@@ -13,15 +13,17 @@
    <div>
     <h1>Star Wars Epic Duels</h1>
    </div>
-    <div>
+   
+   <!-- <div>
       <form id="character-selector">
         <label for="character-input">Choose a character</label>
         <select id="character-input" name="character-input">
           <option id="1" value="0"> char 1</option>
         </select>
-        <br><button id="character-btn">Select Character</button>
+        <br><button class = "button-standard " id="character-btn">Select Character</button>
       </form>
-    </div>
+    </div> -->
+
   </div>
   <div class="main">
 
@@ -112,7 +114,7 @@
 
     <div class = "active-game">
         
-         <div><button id="start-game-btn">Start Game</button></div> 
+        <div class = "board-width"></div>
           <div class="player "> 
               <section>
                 Luke Skywalker
@@ -121,10 +123,21 @@
                 Health:
               </section>
           </div>
-          <div class ="game-info"> 
+
+          <div>
+            <form id="character-selector">
+              <label for="character-input">Choose a character</label>
+              <select id="character-input" name="character-input">
+                <option id="1" value="0"> char 1</option>
+              </select>
+              <br><button class = "button-standard " id="character-btn">Select Character</button>
+            </form>
+          </div>
+          <div><button id="start-game-btn">Start a game vs ...</button></div> 
+          <!-- <div class ="game-info"> 
             <div>Player Damge</div> 
             <div>Bot Damage</div> 
-          </div>
+          </div> -->
           
           <div class="bot"> 
             <section>
@@ -218,9 +231,9 @@
     <!------------------------ END BOT AREA --------------------------------------->
   </div>
   <!-- END MAIN -->
-  <div class="heading">
-    <button id="log-game-btn">Log Game</button>
-    <button id="play-again-btn">Play Again </button>
+  <div class="foot">
+    <button class = "button-standard id="log-game-btn">Log Game</button>
+    <button class = "button-standard id="play-again-btn">Play Again </button>
   </div>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="main.js"></script>
