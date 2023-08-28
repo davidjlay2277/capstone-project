@@ -9,21 +9,19 @@
 </head>
 
 <body>
-  <div class="heading">
-   <div>
-    <h1>Star Wars Epic Duels</h1>
-   </div>
-   
-   <!-- <div>
-      <form id="character-selector">
-        <label for="character-input">Choose a character</label>
-        <select id="character-input" name="character-input">
-          <option id="1" value="0"> char 1</option>
-        </select>
-        <br><button class = "button-standard " id="character-btn">Select Character</button>
-      </form>
-    </div> -->
+   <div class="heading">
+    <div id="bot-status">
+      <h2>char name</h2>
+      <p> Health = 14</p>
+     </div>
+    <div>
+      <h1 id = "heading" >Star Wars Epic Duels <br> vs</h1>
 
+   </div>
+   <div id="bot-status">
+    <h2>bot name</h2>
+    <p> Health = 12</p>
+   </div>
   </div>
   <div class="main">
 
@@ -35,9 +33,9 @@
       <div class="cards player-cards">
 
         <div>
-          <button class="card-button rebel-card" onclick="postCard(1)">
+          <button class="card rebel-front" onclick="postCard(1)">
             <div class="value-container">
-              <div class="label">attack</div>
+              <div class="label">Attack</div>
               <div class="attack-circle">
                 <div class="value">4</div>
               </div>
@@ -46,13 +44,13 @@
               <div class="defend-circle">
                 <div class="value">2</div>
               </div>
-              <div class="label">defense</div>
+              <div class="label">Defend</div>
             </div>
           </button>
 
         </div>
 
-        <button class="card-button rebel-card" onclick="postCard(1)">
+        <button class="card rebel-back" onclick="postCard(1)">
           <div>
             <div class="value-container">
             </div>
@@ -61,24 +59,18 @@
           </div>
         </button>
 
-        <button class="card-button rebel-card" onclick="postCard(1)">
-          <div class="value-container">
-            <div class="label">attack</div>
-            <div class="attack-circle">
-              <div class="value">4</div>
+        <button class="card rebel-back" onclick="postCard(1)">
+          <div>
+            <div class="value-container">
             </div>
-          </div>
-          <div class="value-container">
-            <div class="defend-circle">
-              <div class="value">2</div>
+            <div class="value-container">
             </div>
-            <div class="label">defense</div>
           </div>
         </button>
 
-        <button class="card-button rebel-card" onclick="postCard(1)">
+        <button class="card rebel-front" onclick="postCard(1)">
           <div class="value-container">
-            <div class="label">attack</div>
+            <div class="label">Attack</div>
             <div class="attack-circle">
               <div class="value">4</div>
             </div>
@@ -87,13 +79,13 @@
             <div class="defend-circle">
               <div class="value">2</div>
             </div>
-            <div class="label">defense</div>
+            <div class="label">Defend</div>
           </div>
         </button>
 
-        <button class="card-button rebel-card" onclick="postCard(1)">
+        <button class="card rebel-front" onclick="postCard(1)">
           <div class="value-container">
-            <div class="label">attack</div>
+            <div class="label">Attack</div>
             <div class="attack-circle">
               <div class="value">4</div>
             </div>
@@ -102,7 +94,7 @@
             <div class="defend-circle">
               <div class="value">2</div>
             </div>
-            <div class="label">defense</div>
+            <div class="label">Defend</div>
           </div>
         </button>
       </div>
@@ -117,42 +109,40 @@
         <div class = "board-width"></div>
           <div class="player "> 
               <section>
-                Luke Skywalker
+             player 1
               </section>
-              <section>
-                Health:
-              </section>
-          </div>
+                  </div>
 
           <div>
             <form id="character-selector">
               <label for="character-input">Choose a character</label>
               <select id="character-input" name="character-input">
-                <option id="1" value="0"> char 1</option>
+                
               </select>
-              <br><button class = "button-standard " id="character-btn">Select Character</button>
+              <br><button class = "button-standard " id="character-btn">Select</button>
             </form>
           </div>
-          <div><button id="start-game-btn">Start a game vs ...</button></div> 
-          <!-- <div class ="game-info"> 
-            <div>Player Damge</div> 
-            <div>Bot Damage</div> 
-          </div> -->
+          <div><button class = "button-standard" id="start-game-btn">Start Game</button></div> 
+
+          <div class="game-end">
+            <button class = "button-standard id="log-game-btn">Log Game</button>
+            <button class = "button-standard id="play-again-btn">Play Again </button>
+          </div>
+      
           
           <div class="bot"> 
             <section>
-              Darth Vader
+             opponent
             </section>
             <section>
-              Health:
             </section>
           </div>
       
     </div>
 
-    <!------------------------- END ACTIVE GAME AREA ------------------------------------->
+    <!------------------------- END ACTIVE GAME AREA ----------------------------->
 
-    <!------------------------ BEGIN BOT AREA ------------------------------------->
+    <!------------------------ BEGIN BOT AREA ------------------------------------>
     <section id="bot-area">
       <div id="bot1">
 
@@ -160,10 +150,10 @@
       <div class="cards bot-cards">
         <div>
           <div id="card1">
-            <button class="card-button emperial-card" onclick="postCard(1)">
+            <button class="card emperial-front" onclick="postCard(1)">
               <div>
                 <div class="value-container">
-                  <div class="label">attack</div>
+                  <div class="label">Attack</div>
                   <div class="attack-circle">
                     <div class="value">4</div>
                   </div>
@@ -172,13 +162,13 @@
                   <div class="defend-circle">
                     <div class="value">2</div>
                   </div>
-                  <div class="label">defense</div>
+                  <div class="label">Defend</div>
                 </div>
               </div>
             </button>
           </div>
         </div>
-        <button class="card-button emperial-card" onclick="postCard(1)">
+        <button class="card emperial-back" onclick="postCard(1)">
           <div>
             <div class="value-container">
 
@@ -190,7 +180,7 @@
 
         </button>
 
-        <button class="card-button emperial-card" onclick="postCard(1)">
+        <button class="card emperial-back" onclick="postCard(1)">
           <div>
             <div class="value-container">
 
@@ -202,7 +192,7 @@
 
         </button>
 
-        <button class="card-button emperial-card" onclick="postCard(1)">
+        <button class="card emperial-back" onclick="postCard(1)">
           <div>
             <div class="value-container">
 
@@ -214,7 +204,7 @@
 
         </button>
 
-        <button class="card-button emperial-card" onclick="postCard(1)">
+        <button class="card emperial-back" onclick="postCard(1)">
           <div>
             <div class="value-container">
 
@@ -231,10 +221,7 @@
     <!------------------------ END BOT AREA --------------------------------------->
   </div>
   <!-- END MAIN -->
-  <div class="foot">
-    <button class = "button-standard id="log-game-btn">Log Game</button>
-    <button class = "button-standard id="play-again-btn">Play Again </button>
-  </div>
+
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="main.js"></script>
 </body>
