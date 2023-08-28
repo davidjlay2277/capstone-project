@@ -1,5 +1,8 @@
 body {
-    background-color: lightgray;
+    background-image: url('https://i.etsystatic.com/25682453/r/il/3624eb/3267112438/il_fullxfull.3267112438_7pqw.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  
   }
   h1 {
     display: flex;
@@ -8,40 +11,37 @@ body {
     margin: 0px;
   }
   
-  h2 {
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    padding: 2px;
-    color: darkblue;
-  }
-
   form {
     display: flex;
-    color: rgb(2, 24, 37);
-    font-size: 18px;
+    align-items: center;
+    color: yellow;
+    font-size: 24px;
     flex-direction: column;
-    padding: 5px 10px 5px 10px;
-    margin: 10px 10px 20px 10px;
+    width: 200px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 30px;
     border-radius: 5px;
-    border: 1px;
+    border: 2px;
     border-style: groove;
     box-shadow: 5px 5px 8px 0 rgba(0, 0, 0, 0.14), 0 2px 4px 0 rgba(0, 0, 0, 0.14);
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   }
 
-  
   .heading {
     background-color: rgb(10, 10, 10);
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1041px-Star_Wars_Logo.svg.png') ;
-    background-size: 100%;
-    padding: 20px 10px 20px 10px;
-    color: white;
-  }
-  
-  .top {
-    background-color: lightgray;
-    color: rgb(3, 3, 114);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    /* background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1041px-Star_Wars_Logo.svg.png') ; */
+    background-size: 8%;
+    padding: 10px 10px 10px 10px;
+    font-family: "Star Jedi", sans-serif;
+    font-size: 24px;
+    color: #FFD700
   }
   
   .main {
@@ -71,10 +71,7 @@ body {
     align-content: center;
     padding-top: 10px;
   }
-  
-.player-img {
-  width: 100px;
-}
+
 
 /* ---------------  BEGIN CARD STYLE ---------------------- */
 .cards {
@@ -205,34 +202,34 @@ body {
     margin: 1px;
   }
   
-  /* #game-area {
-    display: flex;
-    background-image: url('https://i.ebayimg.com/images/g/~wsAAOSwknNiGxTL/s-l1200.jpg') ;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-clip: border-box;
-    width: 2000px;
-    background-position: center;
-    border: 4px solid rgb(12, 1, 1);
-    border-style: dotted;
-  } */
- 
+
 .active-game {
   background-image: url('https://i.ebayimg.com/images/g/~wsAAOSwknNiGxTL/s-l1200.jpg') ;
+  display: flex;
+  transform: perspective(2500px) rotateX(30deg) rotateY(15deg);
+  transform-origin: top center;
+  box-shadow: 0px 5px 8px 4px rgba(0, 0, 0, 0.3);
+  
   background-position: center;
   background-size: auto;
   background-repeat: no-repeat;
-  display: flex;
+  margin:10px 120px 10px 120px; 
+ 
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 500px;
-  color: white;
+  width: fit-content;
+  height:fit-content;
+  color: rgb(14, 1, 1);
   font-size: 32px;
 }
 
 .player {
   display: flex;
+  position: relative;
+  transform: rotateX(-10deg) rotateY(5deg);
+  transform-origin: top right;
+  box-shadow: 0px 5px 8px 4px rgba(0, 0, 0, 0.3);
   flex-direction: column;
   align-items: left;
   width: 350px;
@@ -242,7 +239,7 @@ body {
   background-color: #f0f0f0;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  background-image: url('https://static.displate.com/857x1200/displate/2019-07-05/1a2a328ed2993130087fe27d6cc83bd0_d8a8c08c0c2c73502221efd65cfebc81.jpg') ;
+  background-image: url('https://m.media-amazon.com/images/M/MV5BYWU5ODdhZjItZGE3NC00ZjliLThiYWYtMDgyZGU2YjU0MDhkXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_QL75_UX500_CR0,47,500,281_.jpg') ;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -254,7 +251,7 @@ body {
   height: 125px;
   padding: 30px;
   margin: 20px;
-  background-color: #f0f0f0;
+  background-color: #7d0404;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   background-image: url('https://bigthink.com/wp-content/uploads/2022/07/AdobeStock_298943877_Editorial_Use_Only.jpeg?resize=680,382') ;
@@ -265,19 +262,25 @@ body {
 }
 
   .game-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 275px;
-  height: 100px;
-  padding: 30px;
-  margin: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+  /* width: 275px; */
+  height: 175px;
+  padding: 1px 30px 1px 30px ;
   background-color: #f0f0f0;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  background-image: url('https://static.displate.com/857x1200/displate/2019-07-05/1a2a328ed2993130087fe27d6cc83bd0_d8a8c08c0c2c73502221efd65cfebc81.jpg') ;
+  background-image: url('https://i.etsystatic.com/12877949/r/il/f04b0a/2631914767/il_570xN.2631914767_rvu7.jpg') ;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  }
+
+}
   
   #player-area {
     display: flex;

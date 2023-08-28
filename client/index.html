@@ -10,9 +10,9 @@
 
 <body>
   <div class="heading">
+   <div>
     <h1>Star Wars Epic Duels</h1>
-  </div>
-  <div class="top">
+   </div>
     <div>
       <form id="character-selector">
         <label for="character-input">Choose a character</label>
@@ -28,7 +28,7 @@
     <!------------------------ BEGIN PLAYER AREA -------------------------------->
     <section id="player-area">
       <div id="player1">
-        <h2>Player 1 </h2>
+   
       </div>
       <div class="cards player-cards">
 
@@ -59,7 +59,7 @@
           </div>
         </button>
 
-        <button class="card-button" onclick="postCard(1)">
+        <button class="card-button rebel-card" onclick="postCard(1)">
           <div class="value-container">
             <div class="label">attack</div>
             <div class="attack-circle">
@@ -74,7 +74,7 @@
           </div>
         </button>
 
-        <button class="card-button" onclick="postCard(1)">
+        <button class="card-button rebel-card" onclick="postCard(1)">
           <div class="value-container">
             <div class="label">attack</div>
             <div class="attack-circle">
@@ -89,7 +89,7 @@
           </div>
         </button>
 
-        <button class="card-button" onclick="postCard(1)">
+        <button class="card-button rebel-card" onclick="postCard(1)">
           <div class="value-container">
             <div class="label">attack</div>
             <div class="attack-circle">
@@ -108,7 +108,7 @@
     </section>
     <!-------------------------- END PLAYER AREA ------------------------------------>
 
-    <!------------------------- BEGIN GAME AREA ------------------------------------->
+    <!------------------------- BEGIN ACTIVE GAME AREA ------------------------------------->
 
     <div class = "active-game">
         
@@ -121,7 +121,11 @@
                 Health:
               </section>
           </div>
-          <div class ="game-info"> GAME INFO </div>
+          <div class ="game-info"> 
+            <div>Player Damge</div> 
+            <div>Bot Damage</div> 
+          </div>
+          
           <div class="bot"> 
             <section>
               Darth Vader
@@ -133,12 +137,12 @@
       
     </div>
 
-    <!------------------------- END GAME AREA ------------------------------------->
+    <!------------------------- END ACTIVE GAME AREA ------------------------------------->
 
     <!------------------------ BEGIN BOT AREA ------------------------------------->
     <section id="bot-area">
       <div id="bot1">
-        <h2>Bot</h2>
+
       </div>
       <div class="cards bot-cards">
         <div>
@@ -173,7 +177,7 @@
 
         </button>
 
-        <button class="card-button" onclick="postCard(1)">
+        <button class="card-button emperial-card" onclick="postCard(1)">
           <div>
             <div class="value-container">
 
@@ -185,7 +189,7 @@
 
         </button>
 
-        <button class="card-button" onclick="postCard(1)">
+        <button class="card-button emperial-card" onclick="postCard(1)">
           <div>
             <div class="value-container">
 
@@ -197,7 +201,7 @@
 
         </button>
 
-        <button class="card-button" onclick="postCard(1)">
+        <button class="card-button emperial-card" onclick="postCard(1)">
           <div>
             <div class="value-container">
 
@@ -214,7 +218,7 @@
     <!------------------------ END BOT AREA --------------------------------------->
   </div>
   <!-- END MAIN -->
-  <div class="log-game">
+  <div class="heading">
     <button id="log-game-btn">Log Game</button>
     <button id="play-again-btn">Play Again </button>
   </div>
