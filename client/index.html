@@ -1,96 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Epic Duels</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-  <div class = "heading">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Epic Duels</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="heading">
     <h1>Star Wars Epic Duels</h1>
   </div>
-  <div class= "top" >
-    <div>   
-      <form id= "character-selector" >
+  <div class="top">
+    <div>
+      <form id="character-selector">
         <label for="character-input">Choose a character</label>
-          <select id="character-input" name="character-input">
-            <option id="1" value="0"> char 1</option>
-          </select>
+        <select id="character-input" name="character-input">
+          <option id="1" value="0"> char 1</option>
+        </select>
         <br><button id="character-btn">Select Character</button>
-      </form>       
+      </form>
     </div>
   </div>
-<div class = "main">
+  <div class="main">
 
-<!------------------------ BEGIN PLAYER AREA -------------------------------->
-<section id= "player-area">
-  <div><h2>Select a character first</h2></div>
-  <div class="player-cards">
-    <div class = "box-item">
-      <input type="checkbox" class="checkboxes" name="player-cards" value="1" />
-      <label for="opt1"> card 1</label>
-    </div>
-    <div class = "box-item">
-      <input type="checkbox" class="checkboxes"  name="player-cards" value="2" />
-      <label for="opt2"> card 2 </label>
-    </div>
-    <div class = "box-item">
-      <input type="checkbox" class="checkboxes"  name="player-cards" value="3" />
-      <label for="opt3"> card 3 </label>
-    </div> 
-    <div class = "box-item">
-      <input type="checkbox" class="checkboxes"  name="player-cards" value="4" />
-      <label for="opt4"> card 4 </label>
-    </div> 
-    <div class = "box-item">
-      <input type="checkbox" class="checkboxes"  name="player-cards" value="5" />
-      <label for="opt5"> card 5 </label>
-    </div>             
-  </div>
-  <button id="play-card-btn">Play Card</button>
- 
-  <div><br> discrad pile ?? </div>     
-</section>  
-<!-------------------------- END PLAYER AREA ------------------------------------>
-
-<!------------------------- BEGIN GAME AREA ------------------------------------->
-  
-<div id="game-area"> 
-    <div id="image-container">
-      <img class = "game-board-img" src="https://i.ebayimg.com/images/g/~wsAAOSwknNiGxTL/s-l1200.jpg" alt ="inspiring"></img>
-    </div>
-    <button id="start-game-btn">Start Game</button>
-    <div class = "game-content">
-      <h2 class = "game-status"> GAME STATUS </h2> <br>
-        <div id="player-img"> PLAYER IMG </div> <br>
-        <div id="bot-img"> BOT IMG </div> <br>
-        <div id="game-action"> GAME ACTIONS </div>
-    </div>
-  </div>
-<!------------------------- END GAME AREA ------------------------------------->
-
-<!------------------------ BEGIN BOT AREA ------------------------------------->
-<section id= "bot-area">
-    <div> <h2>Bot</h2></div>
-  <div id ="bot-cards">
-      <div>
-        <p>Card 1</p>
-        <p>Card 2</p>
-        <p>Card 3</p>
-        <p>Card 4</p>
-        <p>Card 5</p>  
+    <!------------------------ BEGIN PLAYER AREA -------------------------------->
+    <section id="player-area">
+      <div id="player1">
+        <h2>Player 1 </h2>
       </div>
-  <div> <br> discrad pile ?? </div>
-</section>
-<!------------------------ END BOT AREA --------------------------------------->
-</div>
-<!-- END MAIN -->
-        <div class = "log-game">
-          <button id = "log-game-btn">Log Game</button>
-          <button id = "play-again-btn">Play Again </button>
+      <div class="cards player-cards">
+
+        <div>
+          <button class="card-button rebel-card" onclick="postCard(1)">
+            <div class="value-container">
+              <div class="label">attack</div>
+              <div class="attack-circle">
+                <div class="value">4</div>
+              </div>
+            </div>
+            <div class="value-container">
+              <div class="defend-circle">
+                <div class="value">2</div>
+              </div>
+              <div class="label">defense</div>
+            </div>
+          </button>
+
         </div>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="main.js"></script>
-  </body>
+
+        <button class="card-button rebel-card" onclick="postCard(1)">
+          <div>
+            <div class="value-container">
+            </div>
+            <div class="value-container">
+            </div>
+          </div>
+        </button>
+
+        <button class="card-button" onclick="postCard(1)">
+          <div class="value-container">
+            <div class="label">attack</div>
+            <div class="attack-circle">
+              <div class="value">4</div>
+            </div>
+          </div>
+          <div class="value-container">
+            <div class="defend-circle">
+              <div class="value">2</div>
+            </div>
+            <div class="label">defense</div>
+          </div>
+        </button>
+
+        <button class="card-button" onclick="postCard(1)">
+          <div class="value-container">
+            <div class="label">attack</div>
+            <div class="attack-circle">
+              <div class="value">4</div>
+            </div>
+          </div>
+          <div class="value-container">
+            <div class="defend-circle">
+              <div class="value">2</div>
+            </div>
+            <div class="label">defense</div>
+          </div>
+        </button>
+
+        <button class="card-button" onclick="postCard(1)">
+          <div class="value-container">
+            <div class="label">attack</div>
+            <div class="attack-circle">
+              <div class="value">4</div>
+            </div>
+          </div>
+          <div class="value-container">
+            <div class="defend-circle">
+              <div class="value">2</div>
+            </div>
+            <div class="label">defense</div>
+          </div>
+        </button>
+      </div>
+
+    </section>
+    <!-------------------------- END PLAYER AREA ------------------------------------>
+
+    <!------------------------- BEGIN GAME AREA ------------------------------------->
+
+    <div class = "active-game">
+        
+         <div><button id="start-game-btn">Start Game</button></div> 
+          <div class="player "> 
+              <section>
+                Luke Skywalker
+              </section>
+              <section>
+                Health:
+              </section>
+          </div>
+          <div class ="game-info"> GAME INFO </div>
+          <div class="bot"> 
+            <section>
+              Darth Vader
+            </section>
+            <section>
+              Health:
+            </section>
+          </div>
+      
+    </div>
+
+    <!------------------------- END GAME AREA ------------------------------------->
+
+    <!------------------------ BEGIN BOT AREA ------------------------------------->
+    <section id="bot-area">
+      <div id="bot1">
+        <h2>Bot</h2>
+      </div>
+      <div class="cards bot-cards">
+        <div>
+          <div id="card1">
+            <button class="card-button emperial-card" onclick="postCard(1)">
+              <div>
+                <div class="value-container">
+                  <div class="label">attack</div>
+                  <div class="attack-circle">
+                    <div class="value">4</div>
+                  </div>
+                </div>
+                <div class="value-container">
+                  <div class="defend-circle">
+                    <div class="value">2</div>
+                  </div>
+                  <div class="label">defense</div>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+        <button class="card-button emperial-card" onclick="postCard(1)">
+          <div>
+            <div class="value-container">
+
+            </div>
+            <div class="value-container">
+
+            </div>
+          </div>
+
+        </button>
+
+        <button class="card-button" onclick="postCard(1)">
+          <div>
+            <div class="value-container">
+
+            </div>
+            <div class="value-container">
+
+            </div>
+          </div>
+
+        </button>
+
+        <button class="card-button" onclick="postCard(1)">
+          <div>
+            <div class="value-container">
+
+            </div>
+            <div class="value-container">
+
+            </div>
+          </div>
+
+        </button>
+
+        <button class="card-button" onclick="postCard(1)">
+          <div>
+            <div class="value-container">
+
+            </div>
+            <div class="value-container">
+
+            </div>
+          </div>
+
+        </button>
+      </div>
+
+    </section>
+    <!------------------------ END BOT AREA --------------------------------------->
+  </div>
+  <!-- END MAIN -->
+  <div class="log-game">
+    <button id="log-game-btn">Log Game</button>
+    <button id="play-again-btn">Play Again </button>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
 </html>

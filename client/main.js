@@ -1,10 +1,12 @@
 const characterBtn = document.getElementById("character-btn");
 const startGameBtn = document.getElementById("start-game-btn");
-const playCardBtn = document.getElementById("play-card-btn");
+// const playCardBtn = document.getElementById("play-card-btn");
 const playAgainBtn = document.getElementById("play-again-btn");
 const logGameBtn = document.getElementById("log-game-btn");
 
 const characterSelector = document.getElementById("character-input");
+const player1 = document.getElementById("player1");
+const bot1 = document.getElementById("bot1");
 
 const baseUrl = "http://localhost:4477";
 const errFunction = (err) => {
@@ -16,7 +18,6 @@ const addCharacterNames = (res) => {
   for (let i = 0; i < charArr.length; i++) {
     let listData = charArr[i];
     let characterOption = document.createElement("option");
-    // characterOption.innerHTML = `<option "id="${i+1}" value=${listData.idcharacter}>${listData.name }</option>`
     characterOption.id = i + 1;
     characterOption.value = listData.idcharacter;
     characterOption.innerHTML = `${listData.name}`;
@@ -25,29 +26,48 @@ const addCharacterNames = (res) => {
 };
 
 const addplayers = (res) => {
-  console.log('add these players: ', res.body)
+let playerObj = res.data[0]
+let botObj = res.data[1]
+
+player1.innerHTML = `Player 1: ${playerObj.name} <br> Player Health: ${playerObj.healthstarting}
+<br>  <img class = "player-img" src="${playerObj.imgurl}" alt ="player1"></img>`;
+bot1.innerHTML = `CPU: ${botObj.name} <br> CPU Health: ${botObj.healthstarting} 
+<br>  <img class = "player-img" src="${botObj.imgurl}" alt ="player1"></img>`;
+
+console.log(playerObj.name, botObj.name)
+}
+
+const startGame = (res) => {
+  
+  console.log(res.data)
+
 }
 
 const getCharacters = () => {
   axios.get(`${baseUrl}/characters`).then(addCharacterNames).catch(errFunction);
 };
 
-const postCharacters = (e) => {
+const postPlayers = (e) => {
   e.preventDefault();
-  console.log("hit on characterBtn");
-  let idcharacter = document.getElementById("character-selector")
-  console.log(idcharacter)
+  let idObj = {
+    idcharacter:  document.getElementById("character-input").value
+  }
   axios
-    .post(`${baseUrl}/players`, idcharacter)
+    .post(`${baseUrl}/players`, idObj)
     .then(addplayers)
     .catch(errFunction);
 };
 
-const postGame = () => {
-  console.log("hit on startGameBtn");
+const postGame = (e) => {
+  e.preventDefault();
+  axios
+  .post(`${baseUrl}/startGame`)
+  .then(startGame)
+  .catch(errFunction);
+
 };
-const postCard = () => {
-  console.log("hit on playCardBtn");
+const postCard = (num) => {
+  console.log("card ",num," was played");
 };
 const deleteGame = () => {
   console.log("hit on playAgainBtn");
@@ -61,10 +81,9 @@ const getGame = () => {
 };
 
 getCharacters();
-// getGame();
 
-characterBtn.addEventListener("click", postCharacters); // user selects a character
+characterBtn.addEventListener("click", postPlayers); // user selects a character
 startGameBtn.addEventListener("click", postGame); // user starts the game
-playCardBtn.addEventListener("click", postCard); // user plays a card
+// playCardBtn.addEventListener("click", postCard); // user plays a card
 playAgainBtn.addEventListener("click", deleteGame); // user logs the game
 logGameBtn.addEventListener("click", putGame);

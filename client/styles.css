@@ -29,21 +29,12 @@ body {
     box-shadow: 5px 5px 8px 0 rgba(0, 0, 0, 0.14), 0 2px 4px 0 rgba(0, 0, 0, 0.14);
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   }
-  
-  button {
-    background-color: whitesmoke;
-    color: rgb(2, 24, 37);
-    border: 2px solid rgb(71, 130, 167);
-    font-size: 14px;
-    padding: 5px 10px 5px 10px;
-    margin: 5px;
-    border-radius: 5px;
-    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 2px 4px 0 rgba(0, 0, 0, 0.14);
-    opacity: 0.75;
-  }
+
   
   .heading {
     background-color: rgb(10, 10, 10);
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1041px-Star_Wars_Logo.svg.png') ;
+    background-size: 100%;
     padding: 20px 10px 20px 10px;
     color: white;
   }
@@ -73,16 +64,114 @@ body {
 }
 
   #player-area {
-   
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    /* justify-content: center; */
     align-items: top;
     align-content: center;
     padding-top: 10px;
   }
   
+.player-img {
+  width: 100px;
+}
+
+/* ---------------  BEGIN CARD STYLE ---------------------- */
+.cards {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	align-content: space-around;
+  width: 500px;
+  /* padding: 20px; */
+  /* border-radius: 10px; */
+  /* box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);   */
+}
+
+.player-cards {
+	justify-content: right;
+}
+
+.bot-cards {
+	justify-content: left;
+}
+
+.value-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.attack-circle {
+  width: 80px;
+  height: 40px; 
+  border-radius: 0 0 50% 50%; 
+  border-style: outset;
+  border-color: rgb(90, 22, 22);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Clip the upper half */
+  background-color: rgb(219, 47, 47);
+
+}
+/* CARD BACKGROUND OPTION  */
+/* https://static.displate.com/857x1200/displate/2019-07-05/1a2a328ed2993130087fe27d6cc83bd0_d8a8c08c0c2c73502221efd65cfebc81.jpg */
+
+.defend-circle {
+  width: 80px;
+  height: 40px; 
+  border-radius: 50% 50% 0 0;
+  border-style: inset;
+  border-color: rgb(21, 21, 116);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Clip the upper half */
+  background-color: rgb(19, 19, 226);
+}
+
+.value {
+  font-size: 24px;
+  color: white;
+}
+
+.label {
+  font-weight: bold;
+  color: blue;
+}
+
+.card-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 145px;
+  height: 200px;
+  padding: 30px;
+  margin: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  background-image: url('  https://boardgamestrategyblog.files.wordpress.com/2016/12/epic-duels-game.png') ;
+  background-size: 100%;
+  background-position: center;
+    /* width: calc(50% - 10px);
+  margin-bottom: 10px;  */
+}
+
+.rebel-card {
+  background-image: url('https://e0.pxfuel.com/wallpapers/598/389/desktop-wallpaper-star-wars-rebel-logo-rebel-logo-star-wars-vector-teahub-io-star-wars-resistance-logo.jpg') ;
+}
+
+.emperial-card {
+  /* background-size: cover; */
+  background-image: url('https://e0.pxfuel.com/wallpapers/841/892/desktop-wallpaper-empire-galactique-star-wars-star-wars-art-star-wars-artwork-minimalist-star-wars-empire.jpg') ;
+}
+
+/* ----------------------- END CARD STLE -------------------- */ 
+
   #bot-area {
     display: flex;
     flex-direction: column;
@@ -93,6 +182,9 @@ body {
     padding-top: 10px;
   }
 
+  .bot-img {
+    width: 100px;
+  }
 
   .submit {
     background-color: whitesmoke;
@@ -113,34 +205,78 @@ body {
     margin: 1px;
   }
   
-  #game-area {
-    /* background-image: url('https://cdn.wallpapersafari.com/38/0/tNfnSd.png') ; */
-    overflow: hidden;
-    position: relative;
-    width: 900px;
-    border: 3px solid black;
-    border-style: double;
-    /* padding: 5px 000px 50px 5px; */
-    margin: 30px 30px 30px 30px;
-  }
-  .game-board-img {
-    position: absolute;
-    left: 20;
-    top: 20;
-    width: 105%;
-    height: auto;
-    background-color: rgb(253, 253, 253);
-    opacity: 0.7;
-  }
-  
-  .game-content {
-    position: relative;
-    color: rgb(19, 70, 102);
-    font-size: 32px;
-  }
-  
-  .game-status {
-    margin: 10px;
+  /* #game-area {
+    display: flex;
+    background-image: url('https://i.ebayimg.com/images/g/~wsAAOSwknNiGxTL/s-l1200.jpg') ;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-clip: border-box;
+    width: 2000px;
+    background-position: center;
+    border: 4px solid rgb(12, 1, 1);
+    border-style: dotted;
+  } */
+ 
+.active-game {
+  background-image: url('https://i.ebayimg.com/images/g/~wsAAOSwknNiGxTL/s-l1200.jpg') ;
+  background-position: center;
+  background-size: auto;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  color: white;
+  font-size: 32px;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 350px;
+  height: 150px;
+  padding: 30px;
+  margin: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  background-image: url('https://static.displate.com/857x1200/displate/2019-07-05/1a2a328ed2993130087fe27d6cc83bd0_d8a8c08c0c2c73502221efd65cfebc81.jpg') ;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.bot {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 300px;
+  height: 125px;
+  padding: 30px;
+  margin: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  background-image: url('https://bigthink.com/wp-content/uploads/2022/07/AdobeStock_298943877_Editorial_Use_Only.jpeg?resize=680,382') ;
+  background-position: center;
+  background-size: 90%;
+  background-repeat: no-repeat;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+  .game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 275px;
+  height: 100px;
+  padding: 30px;
+  margin: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  background-image: url('https://static.displate.com/857x1200/displate/2019-07-05/1a2a328ed2993130087fe27d6cc83bd0_d8a8c08c0c2c73502221efd65cfebc81.jpg') ;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
   
   #player-area {
@@ -151,17 +287,5 @@ body {
   #bot-area {
     display: flex;
     padding-left: 40px;
-  }
-  
-  #game-actions {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: baseline;
-    align-content: flex-start;
-    margin-left: 80px;
-    margin-top: 10px;
-    font-style: italic;
   }
   

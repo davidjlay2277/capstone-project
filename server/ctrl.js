@@ -80,6 +80,7 @@ module.exports = {
   /// CREATE THE players ARRAY using the selected character and a random bot
   postPlayers: (req, res) => {
     let { idcharacter } = req.body;
+    console.log('the requested character id is: ', idcharacter)   
     let idBot = Math.floor(Math.random() * totalBots);
     sequelize
       .query(
@@ -91,8 +92,10 @@ module.exports = {
           sqlResult[0][0].idcharacter > 0 &&
           sqlResult[0][1].idcharacter > 0
         ) {
+          players = []
           players.push(sqlResult[0][0]);
           players.push(sqlResult[0][1]);
+          console.log('the players are' , players)
           res.status(200).send(players);
         } else {
           console.log("please select a character first");

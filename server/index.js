@@ -10,19 +10,21 @@ app.use(express.json());
 const { SERVER_PORT } = process.env;
 const {
   getCharacters,
-  getGame,
   postPlayers,
   postGame,
+  getGame,
   postCard,
   logGame
 } = require("./ctrl.js");
 
 //BASE URL 'http://localhost:4477'
 app.get("/characters", getCharacters);
-app.get("/currentGame", getGame);
 app.post("/players", postPlayers);
 app.post("/startGame", postGame);
+
+app.get("/currentGame", getGame);
 app.post("/playCard", postCard);
+
 app.put("/logGame", logGame);
 
 app.listen(SERVER_PORT, () => console.log(`server running on ${SERVER_PORT}`));
