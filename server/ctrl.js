@@ -14,7 +14,8 @@ let gameCurrent = {};
 let totalBots;
 let players = [];
 let playerHand = [];
-let botHand = [];
+let botHand = []
+let botHandArr = [];
 let botCardsPlayed = 0;
 let gameStatus = false;
 
@@ -46,8 +47,6 @@ const discard = (arr, id) => {
 module.exports = {
 
   getGame: (req, res) => {
-    console.log('hit on geGame')
-    console.log(gameStatus)
     if (gameStatus) {
       res.status(200).send(gameCurrent);
     } else {
@@ -57,10 +56,11 @@ module.exports = {
 
   postCard: (req, res) => {
     let { idcard } = req.body;
-    let botCardId = 6;
+    let idCardBot = botHandArr[botCardsPlayed].idcard;
+    console.log("BOT CARD ID IS: ",idCardBot)
     let { playerHand, botHand, playerHealth, botHealth } = gameCurrent;
     let playerCard = findCard(playerHand, idcard);
-    let botCard = findCard(botHand, botCardId);
+    let botCard = findCard(botHand, idCardBot);
     let playerDamage = damageCalc(
       playerHealth,
       damageCalc(botCard.attackvalue, playerCard.defensevalue)
@@ -70,20 +70,21 @@ module.exports = {
       damageCalc(playerCard.attackvalue, botCard.defensevalue)
     );
     playerHand = discard(playerHand, idcard);
-    botHand = discard(botHand, botCardId);
+    botHand = discard(botHand, idCardBot);
     Object.assign(gameCurrent, {
       playerHealth: playerDamage,
       botHealth: botDamage,
       playerHand: playerHand,
       botHand: botHand,
     });
+    botCardsPlayed
     res.status(200).send(gameCurrent);
   },
 
   /// CREATE THE players ARRAY using the selected character and a random bot
   postPlayers: (req, res) => {
-    let { idcharacter } = req.body;
-    console.log('the requested character id is: ', idcharacter)   
+ 
+    let { idcharacter } = req.body; 
     let idBot = Math.floor(Math.random() * totalBots);
     sequelize
       .query(
@@ -103,7 +104,7 @@ module.exports = {
           gameStatus = true;
 
         } else {
-          console.log("please select a character first");
+          // res.status(500).send(err)
         }
       })
       .catch((err) => console.log("character not found", err));
@@ -135,7 +136,8 @@ module.exports = {
             playerHand: playerHand,
             botHand: botHand,
           };
-          shuffle(botHand);
+          botHandArr = botHand
+          shuffle(botHandArr);
           gameStatus = true
           res.status(200).send(gameCurrent);
         })

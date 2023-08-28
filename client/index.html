@@ -23,7 +23,7 @@
   <div class="main">
 
     <!------------------------ BEGIN PLAYER AREA -------------------------------->
-    <section >
+    <section>
       <div id="player-cards" class="cards-all player-cards">
       </div>
 
@@ -35,9 +35,8 @@
       <div class="board-width"></div>
       <div id="player-img">
       </div>
-      
-      <div>
-        <form id="character-selector">
+      <div id="character-selector">
+        <form >
           <label for="character-input">Choose a character</label>
           <select id="character-input" name="character-input">
           </select>
@@ -45,99 +44,67 @@
         </form>
       </div>
 
-      <div id="game-actions"class="results">
+      <div id="game-actions" class="results">
         <div class=player-action>
           <div> You played </div>
           <div id="player-active-card" class="card rebel-front">
-              <div class="value-container">
-                <div class="label">Attack</div>
-                <div class="attack-circle">
-                  <div class="value">4</div>
-                </div>
+            <div class="value-container">
+              <div class="label">Attack</div>
+              <div class="attack-circle">
+                <div class="value">4</div>
               </div>
-              <div class="value-container">
-                <div class="defend-circle">
-                  <div class="value">2</div>
-                </div>
-                <div class="label">Defend</div>
+            </div>
+            <div class="value-container">
+              <div class="defend-circle">
+                <div class="value">2</div>
               </div>
+              <div class="label">Defend</div>
+            </div>
           </div>
           <div> _ damage taken </div>
         </div>
 
-         <div class=bot-action>
+        <div class=bot-action>
           <div class="right-justify"> Bot played </div>
           <div id="bot-active-card" class="card emperial-front">
-              <div class="value-container">
-                <div class="label">Attack</div>
-                <div class="attack-circle">
-                  <div class="value">4</div>
-                </div>
+            <div class="value-container">
+              <div class="label">Attack</div>
+              <div class="attack-circle">
+                <div class="value">4</div>
               </div>
-              <div class="value-container">
-                <div class="defend-circle">
-                  <div class="value">2</div>
-                </div>
-                <div class="label">Defend</div>
+            </div>
+            <div class="value-container">
+              <div class="defend-circle">
+                <div class="value">2</div>
               </div>
+              <div class="label">Defend</div>
+            </div>
           </div>
           <div> _ damage taken </div>
         </div>
       </div>
-      <div  id= "resolve-damamge-btn"> <button class="button-standard" >Resolve Damage</button></div>
-      
+      <div id="resolve-damamge-btn"> <button class="button-standard">Resolve Damage</button></div>
       <div id="start-game-btn"> </div>
-
       <div class="game-end">
         <button class="button-standard" id="log-game-btn">Log Game</button>
         <button class="button-standard" id="play-again-btn">Play Again </button>
       </div>
       <div id="bot-img">
-        <!-- <div class="background-container"
-          style="background-image: url('https://bigthink.com/wp-content/uploads/2022/07/AdobeStock_298943877_Editorial_Use_Only.jpeg');">
-       </div> -->
       </div>
     </div>
 
-    <!------------------------- END ACTIVE GAME AREA ----------------------------->
+    <!------------ END ACTIVE GAME AREA ------------------->
 
-    <!------------------------ BEGIN BOT AREA ------------------------------------>
-    <section id="bot-cards">
-      <div id="bot1">
-      </div>
-      <div class="cards-all bot-cards">
-        <!-- <div>
-          <div id="card1">
-            <button class="card emperial-front" onclick="postCard(1)">
-              <div>
-                <div class="value-container">
-                  <div class="label">Attack</div>
-                  <div class="attack-circle">
-                    <div class="value">4</div>
-                  </div>
-                </div>
-                <div class="value-container">
-                  <div class="defend-circle">
-                    <div class="value">2</div>
-                  </div>
-                  <div class="label">Defend</div>
-                </div>
-              </div>
-            </button>
-          </div>
-        </div> --> 
-        <!-- <div class="card emperial-back">
-                 </div> -->
-      </div>
-
-
+    <!----------------BEGIN BOT AREA -------------------->
+    <section >
+      <div id="bot-cards" class="cards-all bot-cards"></div>
     </section>
     <!------------------------ END BOT AREA --------------------------------------->
-  </div>
-  <!-- END MAIN -->
 
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="main.js"></script>
+    <!-- END MAIN -->
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

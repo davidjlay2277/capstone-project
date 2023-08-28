@@ -1,11 +1,11 @@
 const characterBtn = document.getElementById("character-btn");
-
 //Changed to 'onCLick in HTML
 // const playCardBtn = document.getElementById("play-card-btn");
 const playAgainBtn = document.getElementById("play-again-btn");
 const logGameBtn = document.getElementById("log-game-btn");
 
-const characterSelector = document.getElementById("character-input");
+const characterSelectContainer = document.getElementById("character-selector");
+const characterSelection = document.getElementById("character-input");
 const playerStatus = document.getElementById("player-status");
 const playerImg = document.getElementById("player-img");
 const botStatus = document.getElementById("bot-status");
@@ -39,7 +39,7 @@ const addCharacterNames = (res) => {
     characterOption.id = i + 1;
     characterOption.value = listData.idcharacter;
     characterOption.innerHTML = `${listData.name}`;
-    characterSelector.appendChild(characterOption);
+    characterSelection.appendChild(characterOption);
   }
 };
 
@@ -64,12 +64,10 @@ style="background-image: url('${botObj.imgurl}');">
   startGamePrompt(botObj.name);
 };
 
-constcreatePlayerCards = (arr) => {
+const createPlayerCards = (arr) => {
   for (let i = 0; i < arr.length; i++) {
     let { idcard, attackvalue, defensevalue, status } = arr[i];
-    console.log(attackvalue);
     let newCard = document.createElement("div");
-    console.log(newCard);
     if (status === "hand") {
       newCard.innerHTML = `<button class="card rebel-front" onclick="postCard(${idcard})">
     <div class="value-container">
@@ -86,7 +84,7 @@ constcreatePlayerCards = (arr) => {
     </div>
   </button>`;
     } else {
-      newCard.innerHTML = `<div class="card emperial-back" id=${idcard}>
+      newCard.innerHTML = `<div class="card rebel-back" id=${idcard}>
          </div>`;
     }
     playerCards.appendChild(newCard);
@@ -96,11 +94,9 @@ constcreatePlayerCards = (arr) => {
 const createBotCards = (arr) => {
   for (let i = 0; i < arr.length; i++) {
     let { idcard, attackvalue, defensevalue, status } = arr[i];
-    console.log(attackvalue);
     let newCard = document.createElement("div");
-    console.log(newCard);
-    if (status === "hand") {
-      newCard.innerHTML = `<button class="card rebel-front" onclick="postCard(${idcard})">
+    if (status === "discard") {
+      newCard.innerHTML = `<div id=${idcard} class="card emperial-font">
     <div class="value-container">
       <div class="label">Attack</div>
       <div class="attack-circle">
@@ -113,22 +109,23 @@ const createBotCards = (arr) => {
       </div>
       <div class="label">Defend</div>
     </div>
-  </button>`;
+  </div>`;
     } else {
       newCard.innerHTML = `<div class="card emperial-back" id=${idcard}>
          </div>`;
     }
-    playerCards.appendChild(newCard);
+    botCards.appendChild(newCard);
   }
 };
 
-
 updateCurrentGame = (res) => {
+  console.log("hit on updateCurrent Game and ...: ", res.data)
   playerCards.innerHTML = ``;
   botCards.innerHTML = ``;
+  characterSelectContainer.innerHTML = ``
   let { playerHand, botHand, playerHealth, botHealth } = res.data;
   createPlayerCards(playerHand);
-  // createCards(botHand, "empire")
+  createBotCards(botHand)
 };
 
 const postGame = () => {
@@ -154,7 +151,10 @@ const postPlayers = (e) => {
 };
 
 const postCard = (num) => {
-  console.log("card ", num, " was played");
+  let cardObj = {
+    idcard: num
+  }
+  axios.post(`${baseUrl}/playCard`, cardObj).then(updateCurrentGame).catch(errFunction);
 };
 const deleteGame = () => {
   console.log("hit on playAgainBtn");
