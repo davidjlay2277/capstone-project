@@ -28,7 +28,7 @@ To run the application locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/star-wars-epic-duels.git
+   git clone https://github.com/davidjlay2277/capstone-project
 
 2. 
     install dependencies: 
