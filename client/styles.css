@@ -57,6 +57,7 @@ form {
   font-family: "Star Jedi", sans-serif;
   font-size: 20px;
   color: #ffd700;
+  border-radius: 10px;
 }
 
 .foot {
@@ -219,6 +220,7 @@ button:hover {
 
 .bot-img {
   width: 100px;
+  border-radius: px;
 }
 
 .submit {
@@ -260,6 +262,8 @@ button:hover {
   height: 850px;;
   color: rgb(14, 1, 1);
   font-size: 32px;
+  border-radius: 10px;
+  
 }
 
 .board-width {
@@ -286,6 +290,7 @@ button:hover {
   font-style: italic;
   font-size: 16pt;
   color: white;
+    border-radius: 10px;
 }
 
 .bot {
@@ -303,6 +308,11 @@ button:hover {
   font-style: italic;
   color: white;
   font-size: 16pt;
+
+
+}
+#game-status {
+  border-radius: 5px;
 }
 
 .background-container {
@@ -310,9 +320,12 @@ button:hover {
   height: 125px;
   padding: 30px;
   margin: 20px;
-  background-size: contain;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  border-radius: 10px;
+
 }
 
 .end-game-btn {
@@ -341,7 +354,6 @@ button:hover {
   border-width: 4px;
   border-inline-color: black;
 }
-
 
 .start-btn {
   background-color: #055913; 
