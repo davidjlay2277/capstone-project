@@ -4,22 +4,18 @@ Star Wars Epic Duels is a web-based card duel game where players can select char
 
 ## Disclaimer
 
-Star Wars is a registered trademark of Lucasfilm Ltd. This project is an unofficial fan project and is not endorsed by or affiliated with Lucasfilm Ltd. The Star Wars name, characters, and related images are © Lucasfilm Ltd. All rights reserved. 
-
-## Educational and Personal Project
-
-This project is created for educational purposes and personal interest. It is intended to showcase skills in web development, JavaScript programming, and working with APIs. The use of Star Wars characters and elements is solely for illustrative and entertainment purposes.
+Star Wars is a registered trademark of Lucasfilm Ltd. This project is an unofficial fan project and is not endorsed by or affiliated with Lucasfilm Ltd. The Star Wars name, characters, and related images are © Lucasfilm Ltd. All rights reserved. This project is created for educational purposes and personal interest. The use of Star Wars characters and elements is solely for illustrative and entertainment purposes.
 
 ## Table of Contents
 
 - [Description](#description)
-- [Demo](#demo)
 - [Installation](#installation)
+- [Database](#database)
 - [Usage](#usage)
 - [Endpoints](#endpoints)
 - [Technologies Used](#technologies-used)
+- [Additional Documents](#additional-documents)
 - [Authors](#authors)
-- [License](#license)
 
 ## Description
 
@@ -83,6 +79,7 @@ The applicaiton accoutns for growth in the db. version 1 has 2 characters with 5
 - DELETE /resetGame: Resets the game state.
 
 ## Technologies Used:
+
 - HTML, CSS
 - JavaScript
 - Express.js
@@ -90,6 +87,8 @@ The applicaiton accoutns for growth in the db. version 1 has 2 characters with 5
 - Axios
 
 ## Additional Documents
+
+Project documentation can found in capstone-project/plan
 
 ## Authors
 David Lay
