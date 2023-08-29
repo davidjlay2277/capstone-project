@@ -14,15 +14,15 @@ let gameCurrent = {};
 let totalBots;
 let players = [];
 let playerHand = [];
-let botHand = []
+let botHand = [];
 let botHandArr = [];
 let botCardsPlayed = 0;
 let gameStatus = false;
 
-const shuffle= (arr) => {
+const shuffle = (arr) => {
   return arr.sort(() => Math.random() - 0.5);
-  }
-  
+};
+
 const drawCards = (arr) => {
   return arr.map((card) => {
     return Object.assign({}, card, { status: "hand" });
@@ -45,7 +45,6 @@ const discard = (arr, id) => {
 };
 
 module.exports = {
-
   getGame: (req, res) => {
     if (gameStatus) {
       res.status(200).send(gameCurrent);
@@ -57,7 +56,6 @@ module.exports = {
   postCard: (req, res) => {
     let { idcard } = req.body;
     let idCardBot = botHandArr[botCardsPlayed].idcard;
-    console.log("BOT CARD ID IS: ",idCardBot)
     let { playerHand, botHand, playerHealth, botHealth } = gameCurrent;
     let playerCard = findCard(playerHand, idcard);
     let botCard = findCard(botHand, idCardBot);
@@ -71,20 +69,34 @@ module.exports = {
     );
     playerHand = discard(playerHand, idcard);
     botHand = discard(botHand, idCardBot);
+    let activePlayerCard = {
+      attack: playerCard.attackvalue,
+      defend: playerCard.defensevalue,
+    };
+    let activeBotCard = {
+      attack: botCard.attackvalue,
+      defend: botCard.defensevalue,
+    };
+    let damageToPlayer = playerHealth - playerDamage;
+    let damageToBot = botHealth - botDamage;
     Object.assign(gameCurrent, {
       playerHealth: playerDamage,
       botHealth: botDamage,
       playerHand: playerHand,
       botHand: botHand,
+      activePlayerCard: activePlayerCard,
+      activeBotCard: activeBotCard,
+      damageToplayer: damageToPlayer,
+      damageToBot: damageToBot,
     });
-    botCardsPlayed
+    botCardsPlayed++;
+    console.log('THE CURRENT GAME STATUS: ',gameCurrent)
     res.status(200).send(gameCurrent);
   },
 
   /// CREATE THE players ARRAY using the selected character and a random bot
   postPlayers: (req, res) => {
- 
-    let { idcharacter } = req.body; 
+    let { idcharacter } = req.body;
     let idBot = Math.floor(Math.random() * totalBots);
     sequelize
       .query(
@@ -96,13 +108,12 @@ module.exports = {
           sqlResult[0][0].idcharacter > 0 &&
           sqlResult[0][1].idcharacter > 0
         ) {
-          players = []
+          players = [];
           players.push(sqlResult[0][0]);
           players.push(sqlResult[0][1]);
-          console.log('the players are' , players)
+          console.log("the players are", players);
           res.status(200).send(players);
           gameStatus = true;
-
         } else {
           // res.status(500).send(err)
         }
@@ -135,10 +146,14 @@ module.exports = {
             botHealth: players[1].healthstarting,
             playerHand: playerHand,
             botHand: botHand,
+            activePlayerCard: 0,
+            activeBotCard: 0,
+            damageToplayer: 0,
+            damageToBot: 0,
           };
-          botHandArr = botHand
+          botHandArr = botHand;
           shuffle(botHandArr);
-          gameStatus = true
+          gameStatus = true;
           res.status(200).send(gameCurrent);
         })
         .catch((error) => {
