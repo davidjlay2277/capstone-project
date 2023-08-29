@@ -72,7 +72,7 @@ style="background-image: url('${botObj.imgurl}');">
 const startGamePrompt = (name) => {
   gameBtnContainer.innerHTML = ``;
   let startGameBtn = document.createElement("div");
-  startGameBtn.innerHTML = `<button class="start-btn" onclick="postGame()">Start Game</button>`;
+  startGameBtn.innerHTML = `<button class="start-btn" onclick="postGame()">Start Duel</button>`;
   gameBtnContainer.appendChild(startGameBtn);
   alert(`${name} is ready to Duel! \n  Click "Start Duel" to begin`);
 };
@@ -285,7 +285,7 @@ const updateActiveGame = (res) => {
   const outOfCards = () => {
     setTimeout(() => {
       alert(
-        "You just played your last card! \n Any final damage will be resolved automatically. \n The player with the most health wins"
+        "You just played your last card! \n Once the final damage is resolved, the player with the most health wins."
       );
 
       setTimeout(() => {
