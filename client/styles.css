@@ -316,7 +316,7 @@ button:hover {
 }
 
 .background-container {
-  width: 300px;
+  width: 150px;
   height: 125px;
   padding: 30px;
   margin: 20px;
@@ -324,7 +324,7 @@ button:hover {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 10px;
+  border-radius: 5px;
 
 }
 
