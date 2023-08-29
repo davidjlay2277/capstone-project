@@ -90,7 +90,6 @@ module.exports = {
       damageToBot: damageToBot,
     });
     botCardsPlayed++;
-    console.log("THE CURRENT GAME STATUS: ", gameCurrent);
     res.status(200).send(gameCurrent);
   },
 
@@ -111,7 +110,6 @@ module.exports = {
           players = [];
           players.push(sqlResult[0][0]);
           players.push(sqlResult[0][1]);
-          console.log("the players are", players);
           res.status(200).send(players);
           gameStatus = true;
         } else {
@@ -205,7 +203,6 @@ module.exports = {
 
   deleteGame: (req, res) => {
     gameCurrent = {};
-    console.log("current game removed");
     res
       .sendStatus(200)
       .catch((error) => {

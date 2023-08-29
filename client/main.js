@@ -376,7 +376,7 @@ const deleteGame = () => {
   console.log("hit on deleteGame");
   axios
     .delete(`${baseUrl}/resetGame`)
-    .then(removeGameElements)
+    .then()
     .catch(errFunction);
 };
 const putGame = (str) => {
@@ -384,6 +384,8 @@ const putGame = (str) => {
     .put(`${baseUrl}/logGame`, str)
     .then(alert("Game logged successfully"))
     .catch(errFunction);
+
+    removeGameElements()
 };
 
 characterBtn.addEventListener("click", postPlayers); // set up players
