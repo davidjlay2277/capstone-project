@@ -179,14 +179,15 @@ module.exports = {
   },
   /////////////// LOG THE GAME STATS AT GAME END /////////////////
   logGame: (req, res) => {
-
-    if (gameCurrent.bothealth < gameCurrent.playerHealth) {
-      winner = gameCurrent.playerId;
+    let winner
+    if (gameCurrent.botHealth < gameCurrent.playerHealth) {
+      winner = gameCurrent.playerName;
     }
-    else if (gameCurrent.bothealth > gameCurrent.playerHealth) {
-      winner = gameCurrent.botId;
+    else if (gameCurrent.botHealth > gameCurrent.playerHealth) {
+      winner = gameCurrent.botName;
 
     }else {winner = "tie game"}
+    console.log(winner)
     sequelize
       .query(
         ` INSERT INTO gamestats (idUserCharacter, idBotCharacter, userHealth, botHealth, winner) 

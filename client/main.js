@@ -371,12 +371,11 @@ const postPlayers = (e) => {
   axios.post(`${baseUrl}/players`, idObj).then(addplayers).catch(errFunction);
 };
 
-////////// IN PROGRESS ///////////////
 const deleteGame = () => {
   console.log("hit on deleteGame");
   axios
     .delete(`${baseUrl}/resetGame`)
-    .then()
+    .then(removeGameElements)
     .catch(errFunction);
 };
 const putGame = (str) => {
@@ -388,9 +387,4 @@ const putGame = (str) => {
     removeGameElements()
 };
 
-characterBtn.addEventListener("click", postPlayers); // set up players
-// logGameBtn.addEventListener("click", putGame); // "log game"
-// playAgainBtn.addEventListener("click", deleteGame); //"play again"
-
-// startGameBtn.addEventListener("click", postGame); // user starts the game
-// playCardBtn.addEventListener("click", postCard); // user plays a card
+characterBtn.addEventListener("click", postPlayers);
