@@ -85,12 +85,12 @@ form {
 }
 
 :root {
-  --button-default-color: #01090e; /* Default button color */
-  --button-hover-brightness: 0.8; /* Darkening factor for hover effect */
+  --button-default-color: #01090e; 
+  --button-hover-brightness: 0.8; 
 }
 
 button:hover {
-  filter: brightness(0.6); /* Darkening effect on hover */
+  filter: brightness(0.6);
 }
 
 .main {
