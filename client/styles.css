@@ -81,6 +81,16 @@ form {
   border-style: groove;
   border-width: 4px;
   border-inline-color: black;
+  border-radius: 5px;
+}
+
+:root {
+  --button-default-color: #01090e; /* Default button color */
+  --button-hover-brightness: 0.8; /* Darkening factor for hover effect */
+}
+
+button:hover {
+  filter: brightness(0.6); /* Darkening effect on hover */
 }
 
 .main {
@@ -121,14 +131,15 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 150px;
-  height: 200px;
+  width: 145px;
+  height: 185px;
   padding-top: 6px;
   padding-right: 8px;
   margin: 20px;
   background-color: #f0f0f0;
   border-style: inset;
   border-radius: 10px;
+  /* border: 30px; */
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   background-size: cover;
   background-position: center;
@@ -188,6 +199,7 @@ form {
 }
 .rebel-back {
   color: rgb(227, 227, 238);
+  background-size: cover;
   background-image: url("https://e0.pxfuel.com/wallpapers/598/389/desktop-wallpaper-star-wars-rebel-logo-rebel-logo-star-wars-vector-teahub-io-star-wars-resistance-logo.jpg");
 }
 .emperial-back {
@@ -244,14 +256,15 @@ form {
   align-items: center;
   justify-content: center;
   width: fit-content;
-  height: fit-content;
+  /* height:  */
+  height: 850px;;
   color: rgb(14, 1, 1);
   font-size: 32px;
 }
 
 .board-width {
   width: 550px;
-  height: 500px;
+ 
 }
 
 .player {
@@ -302,21 +315,43 @@ form {
   background-position: center;
 }
 
-/* .game-info {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
-  height: 175px;
-  padding: 1px 30px 1px 30px;
-  background-color: #f0f0f0;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  background-image: url("https://i.etsystatic.com/12877949/r/il/f04b0a/2631914767/il_570xN.2631914767_rvu7.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-} */
+.end-game-btn {
+  background-color: #ffd700;
+  color: #060000;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 16px;
+  margin: 5px;
+  padding: 5px 20px 5px 20px;
+  border-style: groove;
+  border-width: 4px;
+  border-inline-color: black;
+  border-radius: 15px;
+}
+
+
+.resolve-damage {
+  background-color: rgb(117, 7, 7); 
+  color: #060000;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 24px;
+  margin: 5px;
+  border-radius: 5px;
+  padding: 10px 20px 10px 20px;
+  border-style: groove;
+  border-width: 4px;
+  border-inline-color: black;
+}
+
+
+.start-btn {
+  background-color: #055913; 
+  color: #f3efef;
+  font-family: "Star Jedi", sans-serif;
+  font-size: 24px;
+  margin: 5px;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  border-style: groove;
+  border-width: 4px;
+  border-inline-color: black;
+  border-radius: 5px;}

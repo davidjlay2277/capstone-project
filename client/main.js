@@ -6,7 +6,10 @@ const characterSelection = document.getElementById("character-input");
 const resolveDamageBtn = document.getElementById("resolve-damage-btn");
 const gameBtnContainer = document.getElementById("start-game-btn");
 
-const gameEndBtns = document.getElementById("game-end-btn")
+const gameStatusContainer = document.getElementById("game-status");
+const gameEndBtns = document.getElementById("game-end-container");
+const endCurrentGamebtn = document.getElementById("end-game-btn");
+
 const playerStatus = document.getElementById("player-status");
 const playerImg = document.getElementById("player-img");
 const botStatus = document.getElementById("bot-status");
@@ -17,6 +20,8 @@ const botCards = document.getElementById("bot-cards");
 
 const gameActions = document.getElementById("game-actions");
 
+let gameStatus;
+let winner;
 let lastDamageResolved = true;
 let cardsPlayed;
 
@@ -25,14 +30,15 @@ const errFunction = (err) => {
   alert(err);
 };
 
-const updateGame = (res) => {
-  let gameData = res.data;
-  return gameData;
-};
+// const updateGame = (res) => {
+//   let gameData = res.data;
+// return gameData
+//   console.log('logging from upDate Game', gameData)
+// };
 
-const getGame = () => {
-  axios.get(`${baseUrl}/currentGame`).then(updateGame).catch(errFunction);
-};
+// const getGame = () => {
+//   axios.get(`${baseUrl}/currentGame`).then(updateGame).catch(errFunction);
+// };
 
 const addCharacterNames = (res) => {
   let charArr = res.data;
@@ -66,7 +72,7 @@ style="background-image: url('${botObj.imgurl}');">
 const startGamePrompt = (name) => {
   gameBtnContainer.innerHTML = ``;
   let startGameBtn = document.createElement("div");
-  startGameBtn.innerHTML = `<button class="button-standard" onclick="postGame()">Start Game</button>`;
+  startGameBtn.innerHTML = `<button class="start-btn" onclick="postGame()">Start Game</button>`;
   gameBtnContainer.appendChild(startGameBtn);
   alert(`${name} is ready to Duel! \n  Click "Start Duel" to begin`);
 };
@@ -75,7 +81,7 @@ const createPlayerCards = (arr) => {
   for (let i = 0; i < arr.length; i++) {
     let { idcard, attackvalue, defensevalue, status } = arr[i];
     let newCard = document.createElement("div");
-    if (status === "hand") {
+    if (status === "hand" || gameStatus === "ended") {
       newCard.innerHTML = `<button class="card rebel-front" onclick="postCard(${idcard})">
     <div class="value-container">
       <div class="label">Attack</div>
@@ -94,6 +100,29 @@ const createPlayerCards = (arr) => {
       newCard.innerHTML = `<div class="card rebel-back" id="${idcard}">
          </div>`;
     }
+    playerCards.appendChild(newCard);
+  }
+};
+
+const resetPlayerCards = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    let { idcard, attackvalue, defensevalue, status } = arr[i];
+    let newCard = document.createElement("div");
+
+    newCard.innerHTML = `<div class="card rebel-front" onclick="postCard(${idcard})">
+    <div class="value-container">
+      <div class="label">Attack</div>
+      <div class="attack-circle">
+        <div class="value">${attackvalue}</div>
+      </div>
+    </div>
+    <div class="value-container">
+      <div class="defend-circle">
+        <div class="value">${defensevalue}</div>
+      </div>
+      <div class="label">Defend</div>
+    </div>
+  </div>`;
     playerCards.appendChild(newCard);
   }
 };
@@ -126,7 +155,6 @@ const createBotCards = (arr) => {
 };
 
 const updateHealth = (num1, num2) => {
-  console.log("hit on Resolve damage button");
   const newPlayerHealth = playerStatus.querySelector("p");
   newPlayerHealth.innerHTML = `<p> Health = ${num1}</p>`;
   const newBotHealth = botStatus.querySelector("p");
@@ -147,27 +175,63 @@ const resetGameActions = () => {
     <div id="bot-active-card" class="card emperial-front"></div>
     <div> __ damage given </div>
   </div>
-</div>`
-gameBtnContainer.innerHTML = ``;
-resolveDamageBtn.innerHTML = ``;
-  }
+</div>`;
+  gameBtnContainer.innerHTML = ``;
+  resolveDamageBtn.innerHTML = ``;
+};
 
 const botWinner = (name) => {
-  
-}
+  winner = name;
+  gameStatusContainer.innerHTML = `<div class="heading">
+<div> <h1>${name} Wins</h1> </div>
+</div>`;
+  playerImg.innerHTML = ``;
+};
+const playerWinner = (name) => {
+  winner = name;
+  gameStatusContainer.innerHTML = `<div class="heading">
+<div> <h1>${name} Wins!</h1> </div>
+</div>`;
+  botImg.innerHTML = ``;
+};
+const tieGame = () => {
+  winner = "tie game";
+  alert(
+    "The possibility of successfully navigating this game without a winner is approximately 3,720 to 1"
+  );
+  gameStatusContainer.innerHTML = `<div class="heading">
+  <div> Looks like we have a tie.
+  </div>`;
+};
 
-resolveEndOfGame = () => {
-  resetGameActions()
-alert('GAME OVER. Log your resutls and play again')
+resolveEndOfGame = (gameData) => {
+  gameStatus = "ended";
+  gameBtnContainer.innerHTML = ``;
+  resolveDamageBtn.innerHTML = ``;
+  endCurrentGamebtn.innerHTML = ``;
+  playerCards.innerHTML = ``;
+  gameEndBtns.innerHTML = ` <div class="game-end">  
+  <button class="button-standard" id="log-game-btn" onclick="putGame(${winner})">Log Game</button>
+  <button class="button-standard" id="play-again-btn" onclick="deleteGame()">Play Again </button>
+</div>`;
 
-getGame()
-
-console.log(currentGame)
-
-}
+  resetPlayerCards(gameData.playerHand);
+  if (gameData.botHealth > gameData.playerHealth) {
+    botWinner(gameData.botName);
+  }   else if (gameData.botHealth < gameData.playerHealth) {
+    playerWinner(gameData.playerName);
+  }     else if (gameData.botHealth === gameData.playerHealth) {
+          if (gameData.damageToBot > gameData.damageToPlayer) {
+            playerWinner(gameData.playerName);
+    }
+  } else {
+    tieGame();
+  }
+};
 
 const updateActiveGame = (res) => {
   let {
+    playerHand,
     activePlayerCard,
     activeBotCard,
     damageToPlayer,
@@ -175,52 +239,84 @@ const updateActiveGame = (res) => {
     playerHealth,
     botHealth,
   } = res.data;
-  
-  if ((cardsPlayed === 5)||(playerHealth === 0)|| (botHealth === 0)) {
-    resolveEndOfGame();
-  } else {
+
+  const actionsResults = () => {
     gameActions.innerHTML = `<div class="results">
-    <div>
-      <div> You played </div>
-      <div id="player-active-card" class="card rebel-front">
-        <div class="value-container">
-          <div class="label">Attack</div>
-          <div class="attack-circle">
-            <div class="value">${activePlayerCard.attack}</div>
-          </div>
-        </div>
-        <div class="value-container">
-          <div class="defend-circle">
-            <div class="value">${activePlayerCard.defend}</div>
-          </div>
-          <div class="label">Defend</div>
+  <div>
+    <div> You played </div>
+    <div id="player-active-card" class="card rebel-front">
+      <div class="value-container">
+        <div class="label">Attack</div>
+        <div class="attack-circle">
+          <div class="value">${activePlayerCard.attack}</div>
         </div>
       </div>
-      <div> ${damageToPlayer} damage taken </div>
-    </div>
-
-    <div class=bot-action>
-      <div class="right-justify"> Bot played </div>
-      <div id="bot-active-card" class="card emperial-front">
-        <div class="value-container">
-          <div class="label">Attack</div>
-          <div class="attack-circle">
-            <div class="value">${activeBotCard.attack}</div>
-          </div>
+      <div class="value-container">
+        <div class="defend-circle">
+          <div class="value">${activePlayerCard.defend}</div>
         </div>
-        <div class="value-container">
-          <div class="defend-circle">
-            <div class="value">${activeBotCard.defend}</div>
-          </div>
-          <div class="label">Defend</div>
+        <div class="label">Defend</div>
+      </div>
+    </div>
+    <div> ${damageToPlayer} damage taken </div>
+  </div>
+
+  <div class=bot-action>
+    <div class="right-justify"> Bot played </div>
+    <div id="bot-active-card" class="card emperial-front">
+      <div class="value-container">
+        <div class="label">Attack</div>
+        <div class="attack-circle">
+          <div class="value">${activeBotCard.attack}</div>
         </div>
       </div>
-      <div> ${damageToBot} damage given </div>
+      <div class="value-container">
+        <div class="defend-circle">
+          <div class="value">${activeBotCard.defend}</div>
+        </div>
+        <div class="label">Defend</div>
+      </div>
     </div>
-  </div>`;
+    <div> ${damageToBot} damage given </div>
+  </div>
+</div>`;
+  };
 
-    lastDamageResolved = false;
-    resolveDamageBtn.innerHTML = `<button class="button-standard" onclick="updateHealth(${playerHealth},${botHealth})">Resolve Damage</button>`;
+  const outOfCards = () => {
+    setTimeout(() => {
+      alert(
+        "You just played your last card! \n Any final damage will be resolved automatically. \n The player with the most health wins"
+      );
+
+      setTimeout(() => {
+        updateHealth(playerHealth, botHealth);
+        resolveEndOfGame(res.data);
+      }, 1000); // Delay before updateHealth
+    }, 500); // Delay before alert
+  };
+
+  const playerDefeated = () => {
+    setTimeout(() => {
+      alert("Critical hit");
+
+      setTimeout(() => {
+        updateHealth(playerHealth, botHealth);
+        resolveEndOfGame(res.data);
+      }, 1500);
+    }, 100);
+  };
+
+  if (cardsPlayed === playerHand.length) {
+    actionsResults();
+    outOfCards();
+  } else if (playerHealth === 0 || botHealth === 0) {
+    actionsResults();
+    playerDefeated();
+  } else {
+    actionsResults();
+    // lastDamageResolved = false;
+    updateHealth(playerHealth, botHealth);
+    // resolveDamageBtn.innerHTML = `<button class="resolve-damage" onclick="updateHealth(${playerHealth},${botHealth})">Resolve Damage</button>`;
   }
 };
 
@@ -228,17 +324,18 @@ const updateCards = (res) => {
   playerCards.innerHTML = ``;
   botCards.innerHTML = ``;
   characterSelectContainer.innerHTML = ``;
-  let { playerHand, botHand, playerHealth, botHealth } = res.data;
+  let { playerHand, botHand } = res.data;
   createPlayerCards(playerHand);
   createBotCards(botHand);
   if (cardsPlayed > 0) {
     updateActiveGame(res);
-  }else {
-    resetGameActions()
-
-   
+  } else {
+    resetGameActions();
   }
-   
+};
+
+const removeGameElements = () => {
+  window.location.reload();
 };
 
 /////////// ENDPOINT REQUESTS //////////////
@@ -250,6 +347,7 @@ getCharacters();
 
 const postGame = () => {
   cardsPlayed = 0;
+  endCurrentGamebtn.innerHTML = `<button  class ="end-game-btn" onclick="deleteGame()">End Current Game</button> `;
   // e.preventDefault();
   axios.post(`${baseUrl}/startGame`).then(updateCards).catch(errFunction);
 };
@@ -275,15 +373,22 @@ const postPlayers = (e) => {
 
 ////////// IN PROGRESS ///////////////
 const deleteGame = () => {
-  console.log("hit on playAgainBtn");
+  console.log("hit on deleteGame");
+  axios
+    .delete(`${baseUrl}/resetGame`)
+    .then(removeGameElements)
+    .catch(errFunction);
 };
-const putGame = () => {
-  console.log("hit on logGameBtn");
+const putGame = (str) => {
+  axios
+    .put(`${baseUrl}/logGame`, str)
+    .then(alert("Game logged successfully"))
+    .catch(errFunction);
 };
 
 characterBtn.addEventListener("click", postPlayers); // set up players
-logGameBtn.addEventListener("click", putGame); // "log game data"
-playAgainBtn.addEventListener("click", deleteGame); //"play again"
+// logGameBtn.addEventListener("click", putGame); // "log game"
+// playAgainBtn.addEventListener("click", deleteGame); //"play again"
 
 // startGameBtn.addEventListener("click", postGame); // user starts the game
 // playCardBtn.addEventListener("click", postCard); // user plays a card

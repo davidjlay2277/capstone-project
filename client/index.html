@@ -7,17 +7,14 @@
   <title>Epic Duels</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
   <div class="heading">
     <div id="player-status">
     </div>
     <div>
       <h1 id="heading">Star Wars Epic Duels</h1>
-
     </div>
     <div id="bot-status">
-
     </div>
   </div>
   <div class="main">
@@ -33,6 +30,7 @@
     <!----------------------- BEGIN ACTIVE GAME AREA -------------------->
     <div class="active-game">
       <div class="board-width"></div>
+      <div id="game-status"></div>
       <div id="player-img">
       </div>
       <div id="character-selector">
@@ -43,33 +41,27 @@
           <br><button class="button-standard " id="character-btn">Select</button>
         </form>
       </div>
-
       <div id="game-actions">
-      
-      </div>
-
+           </div>
       <div id="resolve-damage-btn"></div>
       <div id="start-game-btn"> </div>
-      <div id= "game-end-container">
-        <div class="game-end">  
-          <button class="button-standard" id="log-game-btn">Log Game</button>
-          <button class="button-standard" id="play-again-btn">Play Again </button>
-        </div>
+      <div id="game-end-container">
       </div>
       <div id="bot-img">
       </div>
+            <div id="end-game-btn"> 
+      </div>
     </div>
-
+  
     <!------------ END ACTIVE GAME AREA ------------------->
 
     <!----------------BEGIN BOT AREA -------------------->
     <section>
       <div id="bot-cards" class="cards-all bot-cards"></div>
     </section>
+
     <!------------------------ END BOT AREA --------------------------------------->
-
     <!-- END MAIN -->
-
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="main.js"></script>
 </body>

@@ -90,7 +90,7 @@ module.exports = {
       damageToBot: damageToBot,
     });
     botCardsPlayed++;
-    console.log('THE CURRENT GAME STATUS: ',gameCurrent)
+    console.log("THE CURRENT GAME STATUS: ", gameCurrent);
     res.status(200).send(gameCurrent);
   },
 
@@ -122,6 +122,7 @@ module.exports = {
   },
   //////////////////// INITIAILIZE THE GAME //////////////////////////////
   postGame: (req, res) => {
+    botCardsPlayed = 0
     let playerId = players[0].idcharacter;
     let botId = players[1].idcharacter;
     if (typeof players[1] === "object") {
@@ -180,25 +181,34 @@ module.exports = {
   },
   /////////////// LOG THE GAME STATS AT GAME END /////////////////
   logGame: (req, res) => {
-    let playerName = req.body.playerName;
-    let winner = "test  working";
-    if (gameCurrent.bothealth > 0) {
+
+    if (gameCurrent.bothealth < gameCurrent.playerHealth) {
       winner = gameCurrent.playerId;
     }
-    if (gameCurrent.playerHealth === 0) {
+    else if (gameCurrent.bothealth > gameCurrent.playerHealth) {
       winner = gameCurrent.botId;
-    }
+
+    }else {winner = "tie game"}
     sequelize
       .query(
-        ` INSERT INTO gamestats (playerName, idUserCharacter, idBotCharacter, userHealth, botHealth, winner) 
+        ` INSERT INTO gamestats (idUserCharacter, idBotCharacter, userHealth, botHealth, winner) 
           VALUES
-          ('${playerName}', ${gameCurrent.playerId}, ${gameCurrent.botId}, ${gameCurrent.playerHealth}, ${gameCurrent.botHealth}, '${winner}');
+          (${gameCurrent.playerId}, ${gameCurrent.botId}, ${gameCurrent.playerHealth}, ${gameCurrent.botHealth}, '${winner}');
           `
       )
       .then(() => {
         console.log("game logged in db");
         res.sendStatus(200);
       })
-      .catch((err) => console.log("Error: game not seeded in DB", err));
+      .catch((err) => console.log("Error: game not logged in DB", err));
   },
-};
+
+  deleteGame: (req, res) => {
+    gameCurrent = {};
+    console.log("current game removed");
+    res
+      .sendStatus(200)
+      .catch((error) => {
+        res.status(400).send("Error occurred: " + error.message);
+  })
+}}
