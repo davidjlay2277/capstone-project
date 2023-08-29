@@ -104,5 +104,3 @@ The application has the following endpoints:
 
 ## Authors
 David Lay
-GitHub Profile: 
-Repo : 
