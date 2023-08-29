@@ -4,7 +4,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 h1 {
   display: flex;
   align-items: center;
@@ -86,8 +85,8 @@ form {
 }
 
 :root {
-  --button-default-color: #01090e; 
-  --button-hover-brightness: 0.8; 
+  --button-default-color: #01090e;
+  --button-hover-brightness: 0.8;
 }
 
 button:hover {
@@ -95,6 +94,7 @@ button:hover {
 }
 
 .main {
+
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -259,16 +259,14 @@ button:hover {
   justify-content: center;
   width: fit-content;
   /* height:  */
-  height: 850px;;
+  height: 850px;
   color: rgb(14, 1, 1);
   font-size: 32px;
   border-radius: 10px;
-  
 }
 
 .board-width {
   width: 550px;
- 
 }
 
 .player {
@@ -290,7 +288,7 @@ button:hover {
   font-style: italic;
   font-size: 16pt;
   color: white;
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 .bot {
@@ -308,8 +306,6 @@ button:hover {
   font-style: italic;
   color: white;
   font-size: 16pt;
-
-
 }
 #game-status {
   border-radius: 5px;
@@ -325,13 +321,12 @@ button:hover {
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 5px;
-
 }
 
 .end-game-btn {
   background-color: #ffd700;
   color: #060000;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 16px;
   margin: 5px;
   padding: 5px 20px 5px 20px;
@@ -341,11 +336,10 @@ button:hover {
   border-radius: 15px;
 }
 
-
 .resolve-damage {
-  background-color: rgb(117, 7, 7); 
+  background-color: rgb(117, 7, 7);
   color: #060000;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 24px;
   margin: 5px;
   border-radius: 5px;
@@ -356,7 +350,7 @@ button:hover {
 }
 
 .start-btn {
-  background-color: #055913; 
+  background-color: #055913;
   color: #f3efef;
   font-family: "Star Jedi", sans-serif;
   font-size: 24px;
@@ -366,4 +360,5 @@ button:hover {
   border-style: groove;
   border-width: 4px;
   border-inline-color: black;
-  border-radius: 5px;}
+  border-radius: 5px;
+}
