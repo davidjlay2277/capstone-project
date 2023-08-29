@@ -36,9 +36,7 @@ To run the application locally, follow these steps:
     npm install
 
 
-3. Set up your environment variables:
-
-    Create a .env file in the root directory and add the following:
+3. Set up your environment variables in a .env file at the root directory:
 
         SERVER_PORT=4477
         CONNECTION_STRING=your-database-connection-string
@@ -48,9 +46,9 @@ To run the application locally, follow these steps:
 
 ## Database
 
-A Seed.sql file contains all the SQL needed to see the database. In the event that the CONNECTION_STRING (URI) is unavialble, simply re-seed an alt db using hte SQL provided and update the CONNECITON_STRING
+In hte Server directory, the Seed.sql file contains all the SQL needed to seed the database used for gameplay. In the event that the CONNECTION_STRING (URI) is unavialble, simply re-seed an alt db using the SQL provided and update CONNECITON_STRING
 
-The applicaiton accoutns for growth in the db. version 1 has 2 characters with 5 cards each. Additional chracters can be added and play tested. The intention behind hte gameStats table is to provide a means for creating balanced and interesting characters 
+The applicaiton accounts for growth in the db. Version 1 has two player characters and two bots with five cards each. Additional chracters can be added and play tested. The intention behind the gamestats table is to provide a means for creating balanced and interesting characters.
 
 ## Usage
 
@@ -72,7 +70,7 @@ The applicaiton accoutns for growth in the db. version 1 has 2 characters with 5
 
 - GET /characters: Retrieves a list of available characters for selection.
 - POST /players: Creates player and bot characters for the game.
-- POST /startGame: Initializes the game with player and bot characters.
+- POST /startGame: Initializes the game with players and their cards.
 - GET /currentGame: Retrieves the current game state.
 - POST /playCard: Plays a card in the current game.
 - PUT /logGame: Logs the game stats at the end of the game.
@@ -80,11 +78,14 @@ The applicaiton accoutns for growth in the db. version 1 has 2 characters with 5
 
 ## Technologies Used:
 
-- HTML, CSS
+- HTML
+- CSS
 - JavaScript
 - Express.js
-- Sequelize (with PostgreSQL)
 - Axios
+- Node
+- PostgreSQL
+- SQL
 
 ## Additional Documents
 
