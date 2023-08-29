@@ -12,11 +12,6 @@ This project is created for educational purposes and personal interest. It is in
 
 ## Table of Contents
 
-<!-- ... rest of the README content ... -->
-
-
-## Table of Contents
-
 - [Description](#description)
 - [Demo](#demo)
 - [Installation](#installation)
@@ -63,8 +58,6 @@ The applicaiton accoutns for growth in the db. version 1 has 2 characters with 5
 
 ## Usage
 
-- Once the application is running, follow these steps:
-
 1. Select a character from the character dropdown list.
 2. Click the "Select" button to choose the character.
 3. Click the "Start Game" button to begin the duel.
@@ -80,8 +73,6 @@ The applicaiton accoutns for growth in the db. version 1 has 2 characters with 5
     Start a New game
 
 ## Endpoints
-
-The application has the following endpoints:
 
 - GET /characters: Retrieves a list of available characters for selection.
 - POST /players: Creates player and bot characters for the game.
@@ -99,8 +90,6 @@ The application has the following endpoints:
 - Axios
 
 ## Additional Documents
-
-## 
 
 ## Authors
 David Lay
