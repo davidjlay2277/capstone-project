@@ -16,6 +16,7 @@ form {
   background-color: #09090a;
   color: #ffd700;
   display: flex;
+
   align-items: centergb(8, 8, 8);
   color: #ffd700;
   font-size: 24px;
@@ -30,8 +31,6 @@ form {
   box-shadow: 5px 5px 8px 0 rgba(0, 0, 0, 0.14), 0 2px 4px 0 rgba(0, 0, 0, 0.14);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-
-/* ERROR UP ----------------------------- */
 
 .heading {
   background-color: rgb(10, 10, 10);
@@ -116,62 +115,7 @@ form {
   align-items: center;
   align-content: space-around;
   width: 500px;
-  /* padding: 20px; */
-  /* border-radius: 10px; */
-  /* box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);   */
 }
-
-.player-cards {
-  justify-content: right;
-}
-
-.bot-cards {
-  justify-content: left;
-}
-
-.value-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 5px 0;
-}
-
-.attack-circle {
-  width: 80px;
-  height: 40px;
-  border-radius: 0 0 50% 50%;
-  border-style: outset;
-  border-color: rgb(90, 22, 22);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* Clip the upper half */
-  background-color: rgb(219, 47, 47);
-}
-
-.defend-circle {
-  width: 80px;
-  height: 40px;
-  border-radius: 50% 50% 0 0;
-  border-style: inset;
-  border-color: rgb(21, 21, 116);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* Clip the upper half */
-  background-color: rgb(19, 19, 226);
-}
-
-.value {
-  font-size: 24px;
-  color: white;
-}
-
-.label {
-  font-weight: bold;
-  /* color: rgb(227, 227, 238); */
-}
-
 .card {
   display: flex;
   flex-direction: column;
@@ -190,37 +134,72 @@ form {
   background-position: center;
   background-repeat: no-repeat;
   font-size: 20pt;
-  /* width: calc(50% - 10px);
-  margin-bottom: 10px;  */
 }
-
+.player-cards {
+  justify-content: right;
+}
+.bot-cards {
+  justify-content: left;
+}
+.value-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px 0;
+}
+.attack-circle {
+  width: 80px;
+  height: 40px;
+  border-radius: 0 0 50% 50%;
+  border-style: outset;
+  border-color: rgb(90, 22, 22);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Clip the upper half */
+  background-color: rgb(219, 47, 47);
+}
+.defend-circle {
+  width: 80px;
+  height: 40px;
+  border-radius: 50% 50% 0 0;
+  border-style: inset;
+  border-color: rgb(21, 21, 116);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Clip the upper half */
+  background-color: rgb(19, 19, 226);
+}
+.value {
+  font-size: 24px;
+  color: white;
+}
+.label {
+  font-weight: bold;
+}
 .rebel-front {
   color: white;
   background-image: url("https://static.wikia.nocookie.net/starwars/images/c/c7/Lightsiders_btm.jpg");
 }
-
 .emperial-front {
   color: white;
   background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a364ee04-6380-4393-a551-2199250f57bf/ddm3yde-6ad2903a-603e-4356-a461-70b53ead7074.png/v1/fill/w_1192,h_670,q_70,strp/star_wars___the_dark_side_wallpaper_by_daviddv1202_ddm3yde-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvYTM2NGVlMDQtNjM4MC00MzkzLWE1NTEtMjE5OTI1MGY1N2JmXC9kZG0zeWRlLTZhZDI5MDNhLTYwM2UtNDM1Ni1hNDYxLTcwYjUzZWFkNzA3NC5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.XLm8O6IJQKIRJL_CEjoE0p8zqarKYnca1KluixiJlBU");
 }
-
 .rebel-back {
   color: rgb(227, 227, 238);
   background-image: url("https://e0.pxfuel.com/wallpapers/598/389/desktop-wallpaper-star-wars-rebel-logo-rebel-logo-star-wars-vector-teahub-io-star-wars-resistance-logo.jpg");
 }
-
 .emperial-back {
   color: rgb(202, 63, 9);
   background-image: url("https://e0.pxfuel.com/wallpapers/841/892/desktop-wallpaper-empire-galactique-star-wars-star-wars-art-star-wars-artwork-minimalist-star-wars-empire.jpg");
 }
-
-/* ----------------------- END CARD STLE -------------------- */
+/* ----------------------- END CARD STYLE -------------------- */
 
 #bot-area {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  /* justify-content: center; */
   align-items: top;
   align-content: center;
   padding-top: 10px;
@@ -272,7 +251,7 @@ form {
 
 .board-width {
   width: 550px;
-  /* height: 10px; */
+  height: 500px;
 }
 
 .player {
@@ -290,7 +269,6 @@ form {
   background-color: #0b0453;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  /* background-image: url("https://m.media-amazon.com/images/M/MV5BYWU5ODdhZjItZGE3NC00ZjliLThiYWYtMDgyZGU2YjU0MDhkXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_QL75_UX500_CR0,47,500,281_.jpg"); */
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-style: italic;
   font-size: 16pt;
@@ -308,10 +286,6 @@ form {
   background-color: #7d0404;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  /* background-image: url("https://pyxis.nymag.com/v1/imgs/d33/3f2/43582166e8b4932e752511e4f9e5b52ea6-boba-fett.rsquare.w330.jpg"); */
-  /* background-position: center;
-  background-size: 90%;
-  background-repeat: no-repeat; */
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-style: italic;
   color: white;
@@ -328,7 +302,7 @@ form {
   background-position: center;
 }
 
-.game-info {
+/* .game-info {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -345,4 +319,4 @@ form {
   background-size: cover;
   background-repeat: no-repeat;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-}
+} */

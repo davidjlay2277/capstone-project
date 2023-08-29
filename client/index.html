@@ -36,7 +36,7 @@
       <div id="player-img">
       </div>
       <div id="character-selector">
-        <form >
+        <form>
           <label for="character-input">Choose a character</label>
           <select id="character-input" name="character-input">
           </select>
@@ -44,50 +44,17 @@
         </form>
       </div>
 
-      <div id="game-actions" class="results">
-        <div class=player-action>
-          <div> You played </div>
-          <div id="player-active-card" class="card rebel-front">
-            <div class="value-container">
-              <div class="label">Attack</div>
-              <div class="attack-circle">
-                <div class="value">4</div>
-              </div>
-            </div>
-            <div class="value-container">
-              <div class="defend-circle">
-                <div class="value">2</div>
-              </div>
-              <div class="label">Defend</div>
-            </div>
-          </div>
-          <div> _ damage taken </div>
-        </div>
-
-        <div class=bot-action>
-          <div class="right-justify"> Bot played </div>
-          <div id="bot-active-card" class="card emperial-front">
-            <div class="value-container">
-              <div class="label">Attack</div>
-              <div class="attack-circle">
-                <div class="value">4</div>
-              </div>
-            </div>
-            <div class="value-container">
-              <div class="defend-circle">
-                <div class="value">2</div>
-              </div>
-              <div class="label">Defend</div>
-            </div>
-          </div>
-          <div> _ damage taken </div>
-        </div>
+      <div id="game-actions">
+      
       </div>
-      <div id="resolve-damamge-btn"> <button class="button-standard">Resolve Damage</button></div>
+
+      <div id="resolve-damage-btn"></div>
       <div id="start-game-btn"> </div>
-      <div class="game-end">
-        <button class="button-standard" id="log-game-btn">Log Game</button>
-        <button class="button-standard" id="play-again-btn">Play Again </button>
+      <div id= "game-end-container">
+        <div class="game-end">  
+          <button class="button-standard" id="log-game-btn">Log Game</button>
+          <button class="button-standard" id="play-again-btn">Play Again </button>
+        </div>
       </div>
       <div id="bot-img">
       </div>
@@ -96,7 +63,7 @@
     <!------------ END ACTIVE GAME AREA ------------------->
 
     <!----------------BEGIN BOT AREA -------------------->
-    <section >
+    <section>
       <div id="bot-cards" class="cards-all bot-cards"></div>
     </section>
     <!------------------------ END BOT AREA --------------------------------------->

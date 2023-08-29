@@ -86,7 +86,7 @@ module.exports = {
       botHand: botHand,
       activePlayerCard: activePlayerCard,
       activeBotCard: activeBotCard,
-      damageToplayer: damageToPlayer,
+      damageToPlayer: damageToPlayer,
       damageToBot: damageToBot,
     });
     botCardsPlayed++;
@@ -148,7 +148,7 @@ module.exports = {
             botHand: botHand,
             activePlayerCard: 0,
             activeBotCard: 0,
-            damageToplayer: 0,
+            damageToPlayer: 0,
             damageToBot: 0,
           };
           botHandArr = botHand;
@@ -157,7 +157,7 @@ module.exports = {
           res.status(200).send(gameCurrent);
         })
         .catch((error) => {
-          res.status(500).send("Error occurred: " + error.message);
+          res.status(400).send("Error occurred: " + error.message);
         });
     } else {
       res.status(500).send("characters not ready");

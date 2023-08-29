@@ -1,22 +1,24 @@
 const characterBtn = document.getElementById("character-btn");
-//Changed to 'onCLick in HTML
-// const playCardBtn = document.getElementById("play-card-btn");
 const playAgainBtn = document.getElementById("play-again-btn");
 const logGameBtn = document.getElementById("log-game-btn");
-
 const characterSelectContainer = document.getElementById("character-selector");
 const characterSelection = document.getElementById("character-input");
+const resolveDamageBtn = document.getElementById("resolve-damage-btn");
+const gameBtnContainer = document.getElementById("start-game-btn");
+
+const gameEndBtns = document.getElementById("game-end-btn")
 const playerStatus = document.getElementById("player-status");
 const playerImg = document.getElementById("player-img");
 const botStatus = document.getElementById("bot-status");
 const botImg = document.getElementById("bot-img");
-const gameBtnContainer = document.getElementById("start-game-btn");
 
 const playerCards = document.getElementById("player-cards");
 const botCards = document.getElementById("bot-cards");
 
-//NOT USED ...yet
-// const gameActions = document.getElementbyId("game-actions")
+const gameActions = document.getElementById("game-actions");
+
+let lastDamageResolved = true;
+let cardsPlayed;
 
 const baseUrl = "http://localhost:4477";
 const errFunction = (err) => {
@@ -24,12 +26,11 @@ const errFunction = (err) => {
 };
 
 const updateGame = (res) => {
-  let gameData = res.data
-  return gameData
+  let gameData = res.data;
+  return gameData;
 };
 
 const getGame = () => {
-  console.log("getGame envoked");
   axios.get(`${baseUrl}/currentGame`).then(updateGame).catch(errFunction);
 };
 
@@ -101,7 +102,6 @@ const createBotCards = (arr) => {
   for (let i = 0; i < arr.length; i++) {
     let { idcard, attackvalue, defensevalue, status } = arr[i];
     let newCard = document.createElement("div");
-    console.log(status)
     if (status === "discard") {
       newCard.innerHTML = `<div class="card emperial-front" id="${idcard}" >
     <div class="value-container">
@@ -125,35 +125,145 @@ const createBotCards = (arr) => {
   }
 };
 
+const updateHealth = (num1, num2) => {
+  console.log("hit on Resolve damage button");
+  const newPlayerHealth = playerStatus.querySelector("p");
+  newPlayerHealth.innerHTML = `<p> Health = ${num1}</p>`;
+  const newBotHealth = botStatus.querySelector("p");
+  newBotHealth.innerHTML = `<p> Health = ${num2}</p>`;
+  lastDamageResolved = true;
+};
 
+const resetGameActions = () => {
+  gameActions.innerHTML = `  <div class="results">
+  <div>
+    <div> Player action </div>
+    <div id="player-active-card" class="card rebel-front">
+    </div>
+    <div>__ damage taken </div>
+  </div>
+  <div class=bot-action>
+    <div class="right-justify"> Bot action </div>
+    <div id="bot-active-card" class="card emperial-front"></div>
+    <div> __ damage given </div>
+  </div>
+</div>`
+gameBtnContainer.innerHTML = ``;
+resolveDamageBtn.innerHTML = ``;
+  }
 
-const updateCurrentGame = (res) => {
-  console.log("hit on updateCurrent Game and ...: ", res.data);
+const botWinner = (name) => {
+  
+}
+
+resolveEndOfGame = () => {
+  resetGameActions()
+alert('GAME OVER. Log your resutls and play again')
+
+getGame()
+
+console.log(currentGame)
+
+}
+
+const updateActiveGame = (res) => {
+  let {
+    activePlayerCard,
+    activeBotCard,
+    damageToPlayer,
+    damageToBot,
+    playerHealth,
+    botHealth,
+  } = res.data;
+  
+  if ((cardsPlayed === 5)||(playerHealth === 0)|| (botHealth === 0)) {
+    resolveEndOfGame();
+  } else {
+    gameActions.innerHTML = `<div class="results">
+    <div>
+      <div> You played </div>
+      <div id="player-active-card" class="card rebel-front">
+        <div class="value-container">
+          <div class="label">Attack</div>
+          <div class="attack-circle">
+            <div class="value">${activePlayerCard.attack}</div>
+          </div>
+        </div>
+        <div class="value-container">
+          <div class="defend-circle">
+            <div class="value">${activePlayerCard.defend}</div>
+          </div>
+          <div class="label">Defend</div>
+        </div>
+      </div>
+      <div> ${damageToPlayer} damage taken </div>
+    </div>
+
+    <div class=bot-action>
+      <div class="right-justify"> Bot played </div>
+      <div id="bot-active-card" class="card emperial-front">
+        <div class="value-container">
+          <div class="label">Attack</div>
+          <div class="attack-circle">
+            <div class="value">${activeBotCard.attack}</div>
+          </div>
+        </div>
+        <div class="value-container">
+          <div class="defend-circle">
+            <div class="value">${activeBotCard.defend}</div>
+          </div>
+          <div class="label">Defend</div>
+        </div>
+      </div>
+      <div> ${damageToBot} damage given </div>
+    </div>
+  </div>`;
+
+    lastDamageResolved = false;
+    resolveDamageBtn.innerHTML = `<button class="button-standard" onclick="updateHealth(${playerHealth},${botHealth})">Resolve Damage</button>`;
+  }
+};
+
+const updateCards = (res) => {
   playerCards.innerHTML = ``;
   botCards.innerHTML = ``;
   characterSelectContainer.innerHTML = ``;
   let { playerHand, botHand, playerHealth, botHealth } = res.data;
   createPlayerCards(playerHand);
   createBotCards(botHand);
-};
+  if (cardsPlayed > 0) {
+    updateActiveGame(res);
+  }else {
+    resetGameActions()
 
+   
+  }
+   
+};
 
 /////////// ENDPOINT REQUESTS //////////////
 const getCharacters = () => {
   axios.get(`${baseUrl}/characters`).then(addCharacterNames).catch(errFunction);
 };
+
+getCharacters();
+
 const postGame = () => {
+  cardsPlayed = 0;
   // e.preventDefault();
-  axios.post(`${baseUrl}/startGame`).then(updateCurrentGame).catch(errFunction);
+  axios.post(`${baseUrl}/startGame`).then(updateCards).catch(errFunction);
 };
 const postCard = (num) => {
-  let cardObj = {
-    idcard: num,
-  };
-  axios
-    .post(`${baseUrl}/playCard`, cardObj)
-    .then(updateCurrentGame)
-    .catch(errFunction);
+  if (lastDamageResolved) {
+    cardsPlayed++;
+    let cardObj = {
+      idcard: num,
+    };
+    axios
+      .post(`${baseUrl}/playCard`, cardObj)
+      .then(updateCards)
+      .catch(errFunction);
+  } else alert("Resolve damage before playing another card");
 };
 const postPlayers = (e) => {
   e.preventDefault();
@@ -171,13 +281,9 @@ const putGame = () => {
   console.log("hit on logGameBtn");
 };
 
-getCharacters();
-
 characterBtn.addEventListener("click", postPlayers); // set up players
 logGameBtn.addEventListener("click", putGame); // "log game data"
 playAgainBtn.addEventListener("click", deleteGame); //"play again"
 
 // startGameBtn.addEventListener("click", postGame); // user starts the game
 // playCardBtn.addEventListener("click", postCard); // user plays a card
-
-
