@@ -1,6 +1,6 @@
 # Star Wars Epic Duels
 
-Star Wars Epic Duels is a web-based card duel game where players can select characters from the Star Wars universe and engage in epic card battles against a bot opponent.
+Star Wars Epic Duels is a Milton Bradley tabletop game. This application is a simplified web-based adaptaiton where players can select characters from the Star Wars universe and engage in card battles against a bot opponent.
 
 ## Disclaimer
 
