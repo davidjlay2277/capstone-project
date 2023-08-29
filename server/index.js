@@ -15,19 +15,15 @@ const {
   getGame,
   postCard,
   logGame,
-  deleteGame
+  deleteGame,
 } = require("./ctrl.js");
 
-//BASE URL 'http://localhost:4477'
 app.get("/characters", getCharacters);
 app.post("/players", postPlayers);
 app.post("/startGame", postGame);
-
 app.get("/currentGame", getGame);
 app.post("/playCard", postCard);
-
 app.put("/logGame", logGame);
-
-app.delete("/resetGame", deleteGame)
+app.delete("/resetGame", deleteGame);
 
 app.listen(SERVER_PORT, () => console.log(`server running on ${SERVER_PORT}`));
