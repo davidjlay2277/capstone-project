@@ -30,8 +30,8 @@ For my Capstone Project, I will be recreating a simplified version of a Star War
 - See Wireframe below for rough layout
 
 ## Data Tables
-
 see capstone-project/plan/db-schema.png
+https://github.com/davidjlay2277/capstone-project/blob/master/plan/db-schema.png
 
 ### Characters
 
@@ -66,8 +66,9 @@ see capstone-project/plan/db-schema.png
   - User can select Clear the current game table
 
 ## Wireframe - Main Page
-
 see capstone-project/plan/wireframe.png
+https://github.com/davidjlay2277/capstone-project/blob/master/plan/wireframe.png
 
 ## Requirements -  Main Page
 see capstone-project/plan/requirements-with-estimate.png
+https://github.com/davidjlay2277/capstone-project/blob/master/plan/requirements-with-estimates.png
