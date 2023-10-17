@@ -220,11 +220,7 @@ resolveEndOfGame = (gameData) => {
     botWinner(gameData.botName);
   }   else if (gameData.botHealth < gameData.playerHealth) {
     playerWinner(gameData.playerName);
-  }     else if (gameData.botHealth === gameData.playerHealth) {
-          if (gameData.damageToBot > gameData.damageToPlayer) {
-            playerWinner(gameData.playerName);
-    }
-  } else {
+  }     else {
     tieGame();
   }
 };
@@ -314,9 +310,7 @@ const updateActiveGame = (res) => {
     playerDefeated();
   } else {
     actionsResults();
-    // lastDamageResolved = false;
     updateHealth(playerHealth, botHealth);
-    // resolveDamageBtn.innerHTML = `<button class="resolve-damage" onclick="updateHealth(${playerHealth},${botHealth})">Resolve Damage</button>`;
   }
 };
 

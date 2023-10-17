@@ -26,4 +26,5 @@ app.post("/playCard", postCard);
 app.put("/logGame", logGame);
 app.delete("/resetGame", deleteGame);
 
-app.listen(SERVER_PORT, () => console.log(`server running on ${SERVER_PORT}`));
+app.listen(process.env.PORT || SERVER_PORT, () => console.log(`server running on ${SERVER_PORT}`));
+
