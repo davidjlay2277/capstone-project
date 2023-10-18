@@ -362,3 +362,60 @@ button:hover {
   border-inline-color: black;
   border-radius: 5px;
 }
+
+/* ... existing CSS ... */
+
+/* Media Queries for Mobile Responsiveness */
+@media only screen and (max-width: 600px) {
+
+  form {
+    width: 90%; /* Adjust form width for smaller screens */
+    padding: 10px; /* Reduce padding */
+    font-size: 18px; /* Reduce font size */
+  }
+
+  .heading, .results, .foot {
+    font-size: 18px; /* Reduce font size */
+  }
+
+  .button-standard {
+    font-size: 18px;
+    padding: 5px 20px; /* Adjust padding */
+  }
+
+  #character-input {
+    font-size: 18px; /* Reduce font size */
+  }
+
+  .cards-all {
+    width: 100%; /* Make it full width on small screens */
+    justify-content: center; /* Center the cards */
+  }
+
+  .card {
+    width: 40%; /* Use percentage instead of fixed pixel */
+    margin: 10px; /* Reduce margin */
+  }
+
+  .player, .bot {
+    width: 90%; /* Adjust player and bot width for smaller screens */
+    font-size: 14pt; /* Reduce font size */
+  }
+
+  .active-game {
+    margin: 30px 10px 50px 10px; /* Adjust margin */
+  }
+
+  .board-width {
+    width: 100%; /* Make it full width on small screens */
+  }
+
+  .background-container {
+    width: 100px;
+    height: 85px;
+    padding: 15px; /* Adjust padding */
+  }
+
+  /* ... Add more adjustments as necessary ... */
+
+}
