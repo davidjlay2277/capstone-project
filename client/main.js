@@ -25,7 +25,8 @@ let winner;
 let lastDamageResolved = true;
 let cardsPlayed;
 
-const baseUrl = "https://mysterious-reaches-25830-60c73b1c3286.herokuapp.com/"
+const baseUrl = ''
+// const baseUrl = "https://mysterious-reaches-25830-60c73b1c3286.herokuapp.com/"
 // const baseUrl = "http://localhost:4477";
 const errFunction = (err) => {
   alert(err);
