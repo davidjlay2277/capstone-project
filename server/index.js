@@ -18,6 +18,10 @@ const {
   deleteGame,
 } = require("./ctrl.js");
 
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
 app.get("/characters", getCharacters);
 app.post("/players", postPlayers);
 app.post("/startGame", postGame);
