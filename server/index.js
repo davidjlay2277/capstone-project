@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const express = require("express");
-const path = require("path");
+// const path = require("path");
 const app = express();
 
 const cors = require("cors");
@@ -22,10 +22,6 @@ const {
 } = require("./ctrl.js");
 
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client', 'index.html'));
-});
-
 app.get("/characters", getCharacters);
 app.post("/players", postPlayers);
 app.post("/startGame", postGame);
@@ -33,6 +29,10 @@ app.get("/currentGame", getGame);
 app.post("/playCard", postCard);
 app.put("/logGame", logGame);
 app.delete("/resetGame", deleteGame);
+
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '../client', 'index.html'));
+// });
 
 const PORT = process.env.PORT || SERVER_PORT;
 app.listen(PORT, () => console.log(`server running on ${PORT}`));
