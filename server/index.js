@@ -1,11 +1,14 @@
 require("dotenv").config();
 
 const express = require("express");
+const path = require("path");
 const app = express();
 
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
+app.use(express.static('client'));
+
 
 const { SERVER_PORT } = process.env;
 const {
@@ -18,8 +21,9 @@ const {
   deleteGame,
 } = require("./ctrl.js");
 
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client', 'index.html'));
 });
 
 app.get("/characters", getCharacters);
